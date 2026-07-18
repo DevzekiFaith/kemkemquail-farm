@@ -62,7 +62,7 @@ export default function ReceiptModal({
     text += `Subtotal (NGN)     : ₦${subtotalNgn.toLocaleString()}\n`;
     text += "==========================================\n";
     text += "Thank you for supporting our organic farm!\n";
-    text += "Inquiries: orders@kemkemquailfarm.com\n";
+    text += "Inquiries: kemkemquail@gmail.com\n";
     text += "==========================================\n";
 
     const blob = new Blob([text], { type: "text/plain;charset=utf-8" });

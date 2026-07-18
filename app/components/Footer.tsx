@@ -1,11 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,53 +117,61 @@ export default function Footer() {
           </div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-7 bg-white/5 border border-white/5 rounded-3xl p-8 w-full">
-            <h4 className="text-sm font-bold text-white mb-2">Send an Order Inquiry</h4>
-            <p className="text-[11px] text-cream/60 mb-6">
-              Fill out this quick form, and it will generate a direct WhatsApp message to our representative.
-            </p>
-
-            <form onSubmit={handleSendMessage} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-[10px] text-cream/50 font-bold uppercase mb-1.5">Email Address</label>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary-light transition-colors"
-                    suppressHydrationWarning
-                  />
-                </div>
-                <div>
-                  <label className="block text-[10px] text-cream/50 font-bold uppercase mb-1.5">Preferred Contact</label>
-                  <span className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-cream/40 block">
-                    WhatsApp Redirect
-                  </span>
-                </div>
+          <div className="lg:col-span-7 bg-white/5 border border-white/5 rounded-3xl p-8 w-full min-h-[340px] flex flex-col justify-center">
+            {!isMounted ? (
+              <div className="text-center py-10">
+                <span className="text-xs text-cream/40 animate-pulse">Loading secure form...</span>
               </div>
+            ) : (
+              <>
+                <h4 className="text-sm font-bold text-white mb-2">Send an Order Inquiry</h4>
+                <p className="text-[11px] text-cream/60 mb-6">
+                  Fill out this quick form, and it will generate a direct WhatsApp message to our representative.
+                </p>
 
-              <div suppressHydrationWarning>
-                <label className="block text-[10px] text-cream/50 font-bold uppercase mb-1.5">Your Message or Custom Request</label>
-                <textarea
-                  required
-                  rows={3}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="I'd like to ask about weekly delivery schedules or request a custom packing size..."
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary-light transition-colors resize-none"
-                  suppressHydrationWarning
-                />
-              </div>
+                <form onSubmit={handleSendMessage} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[10px] text-cream/50 font-bold uppercase mb-1.5">Email Address</label>
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="you@example.com"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary-light transition-colors"
+                        suppressHydrationWarning
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] text-cream/50 font-bold uppercase mb-1.5">Preferred Contact</label>
+                      <span className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-cream/40 block">
+                        WhatsApp Redirect
+                      </span>
+                    </div>
+                  </div>
 
-              <button
-                type="submit"
-                className="w-full sm:w-auto bg-primary text-cream text-xs font-semibold py-2.5 px-8 rounded-full hover:bg-primary-light transition-all cursor-pointer shadow-sm hover:shadow"
-              >
-                Send via WhatsApp
-              </button>
-            </form>
+                  <div suppressHydrationWarning>
+                    <label className="block text-[10px] text-cream/50 font-bold uppercase mb-1.5">Your Message or Custom Request</label>
+                    <textarea
+                      required
+                      rows={3}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="I'd like to ask about weekly delivery schedules or request a custom packing size..."
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary-light transition-colors resize-none"
+                      suppressHydrationWarning
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto bg-primary text-cream text-xs font-semibold py-2.5 px-8 rounded-full hover:bg-primary-light transition-all cursor-pointer shadow-sm hover:shadow"
+                  >
+                    Send via WhatsApp
+                  </button>
+                </form>
+              </>
+            )}
           </div>
 
         </div>

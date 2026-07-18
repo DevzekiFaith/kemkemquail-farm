@@ -93,7 +93,7 @@ export default function Home() {
     setIsReceiptOpen(true);
   };
 
-  const cartItemCount = cartItems.reduce((acc, ci) => acc + ci.quantity, 0);
+  const cartItemCount = cartItems.length;
 
   const scrollToCatalogue = () => {
     setActiveTab("crates");

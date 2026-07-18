@@ -38,27 +38,27 @@ export default function Hero({ onExploreClick }: HeroProps) {
           </div>
 
           {/* Center Column: Beautiful Circular Frame (Agrono Reference Style) */}
-          <div className="relative flex items-center justify-center lg:col-span-5 h-[400px] sm:h-[480px]">
+          <div className="relative flex items-center justify-center lg:col-span-5 h-[320px] sm:h-[480px]">
             {/* Dark green backdrop circle */}
-            <div className="absolute h-[320px] w-[320px] sm:h-[400px] sm:w-[400px] rounded-full organic-circle-primary shadow-2xl animate-pulse duration-[8000ms]" />
+            <div className="absolute h-[250px] w-[250px] xs:h-[300px] xs:w-[300px] sm:h-[400px] sm:w-[400px] rounded-full organic-circle-primary shadow-2xl animate-pulse duration-[8000ms]" />
             
             {/* Secondary offset olive outline circle */}
-            <div className="absolute h-[340px] w-[340px] sm:h-[430px] sm:w-[430px] rounded-full border border-primary-light/30 animate-spin-slow" />
+            <div className="absolute h-[270px] w-[270px] xs:h-[320px] xs:w-[320px] sm:h-[430px] sm:w-[430px] rounded-full border border-primary-light/30 animate-spin-slow" />
             
             {/* Center image cutout */}
-            <div className="absolute h-[270px] w-[270px] sm:h-[350px] sm:w-[350px] rounded-full overflow-hidden border-8 border-background shadow-inner z-10 transition-transform duration-500 hover:scale-105">
+            <div className="absolute h-[210px] w-[210px] xs:h-[260px] xs:w-[260px] sm:h-[350px] sm:w-[350px] rounded-full overflow-hidden border-4 sm:border-8 border-background shadow-inner z-10 transition-transform duration-500 hover:scale-105">
               <Image
                 src="/hero.png"
                 alt="Fresh Organic Quail Eggs"
                 fill
                 priority
-                sizes="(max-width: 640px) 270px, 350px"
+                sizes="(max-width: 640px) 210px, 350px"
                 className="object-cover object-center"
               />
             </div>
             
             {/* Tiny accent gold bubble */}
-            <div className="absolute -bottom-4 -left-4 sm:bottom-4 sm:left-4 h-16 w-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-xs shadow-lg animate-float">
+            <div className="absolute -bottom-2 -left-2 sm:bottom-4 sm:left-4 h-14 w-14 sm:h-16 sm:w-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-[10px] sm:text-xs shadow-lg animate-float">
               100% Organic
             </div>
           </div>

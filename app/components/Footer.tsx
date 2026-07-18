@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -34,6 +35,17 @@ export default function Footer() {
     <footer id="contact" className="bg-secondary text-cream py-32 relative overflow-hidden">
       {/* Decorative dark circle */}
       <div className="absolute bottom-[-10%] left-[-10%] h-96 w-96 rounded-full bg-primary/10 pointer-events-none" />
+
+      {/* Quail Bird background watermark overlay in Footer */}
+      <div className="absolute right-0 bottom-0 h-[280px] w-[280px] sm:h-[380px] sm:w-[380px] opacity-[0.03] pointer-events-none z-0">
+        <Image
+          src="/quail.png"
+          alt="Watermarked Quail bird footer"
+          fill
+          sizes="(max-width: 640px) 280px, 380px"
+          className="object-contain object-right-bottom mix-blend-overlay select-none"
+        />
+      </div>
 
       <div className="mx-auto max-w-7xl px-6 sm:px-8 relative z-10">
         

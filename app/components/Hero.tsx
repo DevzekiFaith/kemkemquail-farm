@@ -12,6 +12,17 @@ export default function Hero({ onExploreClick }: HeroProps) {
       {/* Organic radial background glow from globals.css */}
       <div className="organic-bg" />
 
+      {/* Quail Bird background watermarked overlay */}
+      <div className="absolute bottom-0 left-0 lg:left-[5%] h-[320px] w-[320px] sm:h-[450px] sm:w-[450px] opacity-[0.06] pointer-events-none z-0">
+        <Image
+          src="/quail.png"
+          alt="Watermarked Quail bird"
+          fill
+          sizes="(max-width: 640px) 320px, 450px"
+          className="object-contain object-left-bottom mix-blend-multiply select-none"
+        />
+      </div>
+
       <div className="mx-auto max-w-7xl px-6 sm:px-8 w-full z-10">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
           

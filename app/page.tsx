@@ -44,6 +44,19 @@ export default function Home() {
     }
   }, [cartItems, isLoaded]);
 
+  // Open cart drawer on mount if openCart query parameter is present
+  useEffect(() => {
+    if (isLoaded && typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("openCart") === "true") {
+        setIsCartOpen(true);
+        // Clear query parameters from URL history without reloading
+        const cleanUrl = window.location.pathname;
+        window.history.replaceState({}, document.title, cleanUrl);
+      }
+    }
+  }, [isLoaded]);
+
   const handleAddToCart = (item: CatalogueItem, quantity: number) => {
     setCartItems((prevItems) => {
       const existing = prevItems.find((ci) => ci.item.id === item.id);

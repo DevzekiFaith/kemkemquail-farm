@@ -2,96 +2,16 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { CRATES, COMBOS, CatalogueItem } from "../data/products";
 
-export interface CatalogueItem {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  type: "crate" | "combo";
-  size?: number; // for crates: 4, 6, 12, 30
-  details: string[];
-  image: string;
-}
+export type { CatalogueItem };
 
 interface CatalogueProps {
   onAddToCart: (item: CatalogueItem, quantity: number) => void;
   activeTab: "crates" | "combos";
   setActiveTab: (tab: "crates" | "combos") => void;
 }
-
-const CRATES: CatalogueItem[] = [
-  {
-    id: "crate-4",
-    name: "Petite Tasting Crate",
-    price: 2.50,
-    description: "Perfect introduction to gourmet quail eggs. Compact and protective packaging.",
-    type: "crate",
-    size: 4,
-    details: ["4 Premium organic quail eggs", "Eco-friendly pulp crate", "Ideal for quick single serving"],
-    image: "/crates.png",
-  },
-  {
-    id: "crate-6",
-    name: "Classic Half-Dozen",
-    price: 3.50,
-    description: "An elegant crate perfect for a weekend breakfast or testing new recipes.",
-    type: "crate",
-    size: 6,
-    details: ["6 Farm-fresh quail eggs", "Sturdy protective structure", "Harvested same-day"],
-    image: "/crates.png",
-  },
-  {
-    id: "crate-12",
-    name: "Gourmet Dozen Crate",
-    price: 6.50,
-    description: "The kitchen staple. High nutrient density perfect for families and daily smoothies.",
-    type: "crate",
-    size: 12,
-    details: ["12 Organic speckled eggs", "Premium dual-lock tray", "Excellent source of B12 & Iron"],
-    image: "/crates.png",
-  },
-  {
-    id: "crate-30",
-    name: "Coop Master Crate",
-    price: 14.50,
-    description: "Chef's selection. Essential for baking, pickling, large breakfasts, and catering.",
-    type: "crate",
-    size: 30,
-    details: ["30 Hand-selected bulk eggs", "Maximum protection tray style", "Best cost-per-egg ratio"],
-    image: "/crates.png",
-  },
-];
-
-const COMBOS: CatalogueItem[] = [
-  {
-    id: "combo-double-dozen",
-    name: "Double Dozen Combo",
-    price: 11.50,
-    description: "The ultimate family value pack. Combining two standard 12-egg crates for daily breakfast.",
-    type: "combo",
-    details: ["2 x 12-Egg Gourmet Crates (24 eggs total)", "Saves over 11% compared to single buying", "Secured in a custom double-locked layout"],
-    image: "/combo.png",
-  },
-  {
-    id: "combo-master-duet",
-    name: "Master Duet Combo",
-    price: 26.00,
-    description: "Affordable crate pairing for heavy egg consumers, chefs, bakers, and family feasts.",
-    type: "combo",
-    details: ["2 x 30-Egg Master Crates (60 eggs total)", "Our most economical pricing tier", "Priority coop harvesting queue"],
-    image: "/combo.png",
-  },
-  {
-    id: "combo-sampler-trio",
-    name: "Coop Sampler Trio",
-    price: 22.00,
-    description: "Get the complete variety. A combined pack featuring three of our main crate sizes at a discount.",
-    type: "combo",
-    details: ["1 x 30-Egg Crate + 1 x 12-Egg Crate + 1 x 6-Egg Crate", "48 total eggs of varying sizes", "Great for testing different recipes"],
-    image: "/combo.png",
-  },
-];
 
 export default function Catalogue({ onAddToCart, activeTab, setActiveTab }: CatalogueProps) {
   const [currency, setCurrency] = useState<"both" | "usd" | "ngn">("both");
@@ -203,19 +123,15 @@ export default function Catalogue({ onAddToCart, activeTab, setActiveTab }: Cata
                 className="group flex flex-col justify-between rounded-[32px] bg-white p-7 shadow-[0_8px_30px_rgb(0,0,0,0.015)] hover:shadow-[0_15px_40px_rgba(28,39,30,0.05)] hover:-translate-y-2 active:scale-98 transition-all duration-500 ease-out relative overflow-hidden"
               >
                 {/* Badge for crate size / saving */}
-                {item.type === "crate" ? (
+                {item.size && (
                   <span className="absolute top-4 right-4 bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full z-10">
                     {item.size} Eggs
-                  </span>
-                ) : (
-                  <span className="absolute top-4 right-4 bg-accent/15 text-accent text-xs font-bold px-3 py-1 rounded-full z-10">
-                    Affordable Combo
                   </span>
                 )}
 
                 <div>
-                  {/* Image Container */}
-                  <div className="relative h-44 w-full rounded-2xl overflow-hidden bg-cream mb-6 flex items-center justify-center">
+                  {/* Image Container with Link */}
+                  <Link href={`/crates/${item.id}`} className="block relative h-44 w-full rounded-2xl overflow-hidden bg-cream mb-6 flex items-center justify-center cursor-pointer">
                     <Image
                       src={item.image}
                       alt={item.name}
@@ -223,13 +139,15 @@ export default function Catalogue({ onAddToCart, activeTab, setActiveTab }: Cata
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                     />
-                  </div>
+                  </Link>
 
                   {/* Title & Price */}
                   <div className="flex flex-col gap-1 mb-2">
-                    <h3 className="font-serif text-lg font-bold text-secondary tracking-tight">
-                      {item.name}
-                    </h3>
+                    <Link href={`/crates/${item.id}`} className="hover:text-primary transition-colors">
+                      <h3 className="font-serif text-lg font-bold text-secondary tracking-tight">
+                        {item.name} {item.size && <span className="font-sans font-extrabold text-accent ml-1">({item.size} Eggs)</span>}
+                      </h3>
+                    </Link>
                     <span className="text-primary font-bold text-base whitespace-nowrap">
                       {formatPrice(item.price)}
                     </span>

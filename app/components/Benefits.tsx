@@ -6,7 +6,9 @@ import Image from "next/image";
 export default function Benefits() {
   const slides = [
     { src: "/farm.png", caption: "Sanitized Eco-Coop Setup for Coturnix Breed" },
+    { src: "/coop-real1.jpg", caption: "Premium Selection and Official Branded Outlets" },
     { src: "/farm2.png", caption: "Healthy Feeding & Organic Hydration Methods" },
+    { src: "/coop-real2.jpg", caption: "Freshly Sorted Cartons Ready for Customer Deliveries" },
     { src: "/farm3.png", caption: "Daily Fresh Collection and Egg Care" },
   ];
   const [activeSlide, setActiveSlide] = useState(0);

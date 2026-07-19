@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { CartItem } from "./Cart";
 
@@ -35,71 +35,38 @@ export default function ReceiptModal({
     window.print();
   };
 
-  const handleDownloadTxt = () => {
-    // Generate ASCII Text Receipt
-    const dateStr = new Date().toLocaleString();
-    let text = "==========================================\n";
-    text += "           KEMKEM QUAIL FARM              \n";
-    text += "           OFFICIAL PURCHASE RECEIPT      \n";
-    text += "==========================================\n";
-    text += `Receipt ID : ${receiptId.current}\n`;
-    text += `Date       : ${dateStr}\n`;
-    text += `CAC Reg No : 9071156\n`;
-    text += `NAFDAC Reg : A8-123266L\n`;
-    text += "==========================================\n\n";
-    text += "Items Ordered:\n";
+  const [isGenerating, setIsGenerating] = useState(false);
 
-    checkoutItems.forEach((ci) => {
-      const itemTotalUsd = ci.item.price * ci.quantity;
-      const itemTotalNgn = itemTotalUsd * 1600;
-      const typeLabel = ci.item.type === "crate" ? `${ci.item.size}-Egg Crate` : "Combo Pack";
-      text += `• ${ci.item.name} (${typeLabel})\n`;
-      text += `  Qty: ${ci.quantity} x $${ci.item.price.toFixed(2)} (₦${(ci.item.price * 1600).toLocaleString()})\n`;
-      text += `  Total: $${itemTotalUsd.toFixed(2)} (₦${itemTotalNgn.toLocaleString()})\n\n`;
-    });
+  const handleDownloadPdf = async () => {
+    setIsGenerating(true);
+    try {
+      const element = document.getElementById("print-receipt-area");
+      if (!element) return;
+      
+      const { default: html2canvas } = await import("html2canvas");
+      const { default: jsPDF } = await import("jspdf");
 
-    const subtotalNgn = subtotal * 1600;
-    text += "------------------------------------------\n";
-    text += `Total Eggs Ordered : ${totalEggs} fresh quail eggs\n`;
-    text += `Subtotal (USD)     : $${subtotal.toFixed(2)}\n`;
-    text += `Subtotal (NGN)     : ₦${subtotalNgn.toLocaleString()}\n`;
-    text += "==========================================\n";
-    text += "Payment Instructions:\n";
-    text += "Please make transfer to our FCMB Corporate Account:\n";
-    text += "Bank Name    : FCMB\n";
-    text += "Account Name : KEMKEM QUAIL FARMS ENTERPRISE\n";
-    text += "Account No.  : 2007744689\n";
-    text += "==========================================\n";
-    text += "Thank you for supporting our organic farm!\n";
-    text += "Inquiries: kemkemquailfarm@gmail.com\n";
-    text += "==========================================\n";
+      const canvas = await html2canvas(element, {
+        scale: 2.5, // Ultra-high resolution text rendering
+        useCORS: true,
+        backgroundColor: "#fbfbf7",
+      });
 
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `receipt_${receiptId.current}.txt`;
-    link.click();
-    URL.revokeObjectURL(url);
-  };
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "px",
+        format: [canvas.width, canvas.height], // Perfect page-fit mapping
+      });
 
-  const handleDownloadCsv = () => {
-    // Generate CSV for Seller Record keeping
-    const dateStr = new Date().toISOString();
-    let csv = "ReceiptID,Timestamp,ItemName,ItemType,Quantity,UnitPriceUSD,UnitPriceNGN,ItemTotalUSD,ItemTotalNGN\n";
-
-    checkoutItems.forEach((ci) => {
-      const itemTotalUsd = ci.item.price * ci.quantity;
-      csv += `"${receiptId.current}","${dateStr}","${ci.item.name}","${ci.item.type}",${ci.quantity},${ci.item.price},${ci.item.price * 1600},${itemTotalUsd},${itemTotalUsd * 1600}\n`;
-    });
-
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `invoice_record_${receiptId.current}.csv`;
-    link.click();
-    URL.revokeObjectURL(url);
+      pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+      pdf.save(`receipt_${receiptId.current}.pdf`);
+    } catch (error) {
+      console.error("PDF generation failed:", error);
+      alert("Failed to download PDF. Please try using the 'Print Receipt Card' option.");
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -275,43 +242,36 @@ export default function ReceiptModal({
         <div className="space-y-3 print:hidden">
           <button
             onClick={handlePrint}
-            className="w-full bg-primary text-cream text-xs font-bold py-3 rounded-full hover:bg-primary-light transition-all flex items-center justify-center gap-2 cursor-pointer shadow"
+            className="w-full bg-primary text-cream text-xs font-bold py-3.5 rounded-full hover:bg-primary-light transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-98"
           >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
             </svg>
-            Print Receipt / Save PDF
+            Print Receipt Card
           </button>
 
-          {/* Quick PDF Instruction Banner */}
-          <div className="bg-cream/40 border border-secondary/10 rounded-xl p-3 text-[10px] text-secondary/60 flex items-start gap-2 leading-relaxed">
-            <span className="text-xs mt-0.5">💡</span>
-            <p>
-              <strong>PDF Guide:</strong> Click the <strong>Print Receipt / Save PDF</strong> button above and select <strong>"Save as PDF"</strong> in the destination list of your device print menu to generate a valid PDF document.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              onClick={handleDownloadTxt}
-              className="border border-secondary/10 bg-cream/10 text-secondary hover:bg-cream text-xs font-semibold py-2.5 rounded-full transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-            >
-              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              Download Text (.TXT)
-            </button>
-            
-            <button
-              onClick={handleDownloadCsv}
-              className="border border-secondary/10 bg-cream/10 text-secondary hover:bg-cream text-xs font-semibold py-2.5 rounded-full transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-            >
-              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Download CSV (.CSV)
-            </button>
-          </div>
+          <button
+            onClick={handleDownloadPdf}
+            disabled={isGenerating}
+            className="w-full border border-secondary/10 bg-cream/35 hover:bg-cream text-secondary disabled:opacity-50 text-xs font-semibold py-3.5 rounded-full transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-98"
+          >
+            {isGenerating ? (
+              <>
+                <svg className="animate-spin h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                </svg>
+                Generating PDF Receipt...
+              </>
+            ) : (
+              <>
+                <svg className="h-4 w-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download PDF Receipt
+              </>
+            )}
+          </button>
 
           <button
             onClick={() => {

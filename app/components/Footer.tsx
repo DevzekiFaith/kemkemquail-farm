@@ -91,6 +91,16 @@ export default function Footer() {
               We raise healthy, pasture-fed quails to produce delicious, nutrient-dense eggs. Hand-sorted and delivered fresh daily directly from our clean coops.
             </p>
 
+            {/* Official Trust Certifications */}
+            <div className="flex flex-wrap gap-2.5 pt-2">
+              <span className="text-[9px] bg-white/5 border border-white/10 px-2.5 py-1 rounded font-mono font-bold tracking-wider text-cream/60">
+                CAC Reg No: 9071156
+              </span>
+              <span className="text-[9px] bg-white/5 border border-white/10 px-2.5 py-1 rounded font-mono font-bold tracking-wider text-cream/60">
+                NAFDAC Reg No: A8-123266L
+              </span>
+            </div>
+
             <div className="space-y-3 pt-4 text-xs text-cream/80">
               <div className="flex items-center gap-3">
                 <svg className="h-4 w-4 text-olive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,6 +122,32 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 <span>kemkemquailfarm@gmail.com</span>
+              </div>
+            </div>
+
+            {/* Scan & Pay Card */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 mt-6 space-y-3 max-w-sm">
+              <div className="flex items-center justify-between pb-1.5 border-b border-white/10">
+                <span className="text-[10px] font-bold text-olive uppercase tracking-wider">Scan & Pay (Transfer)</span>
+                <span className="text-[9px] font-mono font-semibold text-white/50">FCMB Bank</span>
+              </div>
+              
+              <div className="flex gap-4 items-center">
+                <div className="relative h-16 w-16 bg-white rounded overflow-hidden flex-shrink-0">
+                  <Image
+                    src="/qr-code.png"
+                    alt="Scan to Pay QR"
+                    fill
+                    sizes="64px"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex-1 space-y-1 text-[11px]">
+                  <p className="font-bold text-white leading-tight">KEMKEM QUAIL FARMS ENTERPRISE</p>
+                  <p className="font-mono text-cream/70 flex items-center gap-1.5">
+                    Account: <strong>2007744689</strong>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

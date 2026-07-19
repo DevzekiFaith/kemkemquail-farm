@@ -251,23 +251,41 @@ export default function Cart({
                 <div className="space-y-1.5">
                   <div className="flex justify-between">
                     <span className="text-secondary/60">Account Name:</span>
-                    <span className="font-bold text-right text-[11px] text-secondary">Agbo Nkemakonam Mabel</span>
+                    <span className="font-bold text-right text-[10px] text-secondary truncate max-w-[180px]" title="KEMKEM QUAIL FARMS ENTERPRISE">
+                      KEMKEM QUAIL FARMS ENTERPRISE
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-secondary/60">Account Number:</span>
                     <button
                       onClick={() => {
-                        navigator.clipboard.writeText("2521028012");
+                        navigator.clipboard.writeText("2007744689");
                         alert("Account number copied!");
                       }}
                       className="font-mono font-bold text-primary hover:text-primary-light flex items-center gap-1 cursor-pointer transition-colors bg-white px-2 py-0.5 rounded border border-secondary/5 hover:border-primary/10 shadow-sm"
                       title="Click to copy account number"
                     >
-                      2521028012
+                      2007744689
                       <svg className="h-3.5 w-3.5 inline text-secondary/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                       </svg>
                     </button>
+                  </div>
+                  
+                  {/* Scan to Pay QR Code */}
+                  <div className="flex gap-3 pt-2 border-t border-secondary/5 items-center">
+                    <div className="relative h-12 w-12 rounded bg-white border border-secondary/10 overflow-hidden flex-shrink-0">
+                      <Image
+                        src="/qr-code.png"
+                        alt="Scan to Pay QR"
+                        fill
+                        sizes="48px"
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="text-[9px] text-secondary/60 leading-normal">
+                      Scan this QR code with your mobile banking app to make a direct transfer.
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { CartItem } from "./Cart";
 
 interface ReceiptModalProps {
@@ -212,12 +213,23 @@ export default function ReceiptModal({
               </div>
 
               {/* Bank Transfer Details inside the receipt card */}
-              <div className="mt-4 pt-3 border-t border-dashed border-secondary/10 text-[10px] text-secondary/70 space-y-1 bg-cream/10 p-3 rounded-lg">
-                <p className="font-bold text-primary text-[11px] mb-1">Transfer Payment Instructions</p>
-                <p><strong>Bank Name:</strong> FCMB</p>
-                <p><strong>Account Name:</strong> Agbo Nkemakonam Mabel</p>
-                <p><strong>Account Number:</strong> 2521028012</p>
-                <p className="text-[9px] text-secondary/40 italic pt-1">Please make your bank transfer and present this receipt along with your transfer proof on WhatsApp for confirmation.</p>
+              <div className="mt-4 pt-3 border-t border-dashed border-secondary/10 text-[10px] text-secondary/70 bg-cream/10 p-3 rounded-lg flex gap-4 items-center">
+                <div className="flex-1 space-y-1">
+                  <p className="font-bold text-primary text-[11px] mb-1">Transfer Payment Instructions</p>
+                  <p><strong>Bank Name:</strong> FCMB</p>
+                  <p><strong>Account Name:</strong> KEMKEM QUAIL FARMS ENTERPRISE</p>
+                  <p><strong>Account Number:</strong> 2007744689</p>
+                  <p className="text-[8px] text-secondary/40 italic pt-1">Provide proof of transfer on WhatsApp.</p>
+                </div>
+                <div className="relative h-14 w-14 bg-white border border-secondary/10 rounded overflow-hidden flex-shrink-0">
+                  <Image
+                    src="/qr-code.png"
+                    alt="Scan to Pay QR"
+                    fill
+                    sizes="56px"
+                    className="object-contain"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -290,7 +302,7 @@ export default function ReceiptModal({
                           `Date: *${dateStr}*\n` +
                           `Amount Paid: *$${subtotal.toFixed(2)} (₦${subtotalNgn.toLocaleString()})*\n` +
                           `Total Eggs: *${totalEggs} fresh quail eggs*\n\n` +
-                          `I have made a bank transfer to FCMB (Agbo Nkemakonam Mabel). Attached is my receipt proof for confirmation!`;
+                          `I have made a bank transfer to FCMB (KEMKEM QUAIL FARMS ENTERPRISE). Attached is my receipt proof for confirmation!`;
               const url = `https://wa.me/2349021012556?text=${encodeURIComponent(msg)}`;
               window.open(url, "_blank");
             }}

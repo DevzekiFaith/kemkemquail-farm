@@ -93,12 +93,12 @@ export default function Cart({
         onClick={onClose}
       />
 
-      <div className="absolute inset-y-0 right-0 flex max-w-full pl-10">
+      <div className="absolute inset-y-0 right-0 flex max-w-full pl-0 sm:pl-10">
         {/* Cart Slide Panel */}
         <div className="w-screen max-w-md transform bg-white shadow-2xl flex flex-col justify-between h-full border-l border-secondary/5">
           
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-secondary/5 px-6 py-5 bg-cream/20">
+          <div className="flex items-center justify-between border-b border-secondary/5 px-4 sm:px-6 py-5 bg-cream/20">
             <div className="flex items-center gap-2">
               <span className="h-6 w-6 rounded-full bg-primary flex items-center justify-center text-cream font-bold text-xs">
                 K
@@ -119,7 +119,7 @@ export default function Cart({
           </div>
 
           {/* Cart Contents */}
-          <div className="flex-1 overflow-y-auto px-6 py-6 no-scrollbar">
+          <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-6 no-scrollbar">
             {cartItems.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center py-20">
                 <div className="h-16 w-16 rounded-full bg-cream/40 flex items-center justify-center text-secondary/40 mb-4 animate-bounce">
@@ -158,7 +158,7 @@ export default function Cart({
                   {cartItems.map((cartItem) => {
                     const itemTotal = cartItem.item.price * cartItem.quantity;
                     return (
-                      <div key={cartItem.item.id} className="flex py-4 gap-4 items-center">
+                      <div key={cartItem.item.id} className="flex py-4 gap-3 sm:gap-4 items-center">
                         <div className="relative h-16 w-16 rounded-xl bg-cream flex-shrink-0 overflow-hidden">
                           <Image
                             src={cartItem.item.image}
@@ -206,7 +206,7 @@ export default function Cart({
                           </div>
                         </div>
 
-                        <div className="text-right min-w-[90px]">
+                        <div className="text-right min-w-[75px] sm:min-w-[90px]">
                           <span className="block text-xs font-bold text-primary">
                             ${itemTotal.toFixed(2)}
                           </span>
@@ -227,7 +227,7 @@ export default function Cart({
 
           {/* Footer Checkouts */}
           {cartItems.length > 0 && (
-            <div className="border-t border-secondary/5 px-6 py-6 bg-cream/10 space-y-4">
+            <div className="border-t border-secondary/5 px-4 sm:px-6 py-6 bg-cream/10 space-y-4">
               <div className="space-y-1.5">
                 <div className="flex justify-between text-xs text-secondary/60">
                   <span>Fresh Egg Count</span>

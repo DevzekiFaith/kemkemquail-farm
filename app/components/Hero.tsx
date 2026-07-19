@@ -91,8 +91,9 @@ export default function Hero({ onExploreClick, onPlayVideoClick }: HeroProps) {
             </div>
             
             {/* Tiny accent gold bubble */}
-            <div className="absolute -bottom-2 -left-2 sm:bottom-4 sm:left-4 h-14 w-14 sm:h-16 sm:w-16 rounded-full bg-accent flex items-center justify-center text-white font-bold text-[10px] sm:text-xs shadow-lg animate-float">
-              100% Organic
+            <div className="absolute -bottom-2 -left-2 sm:bottom-4 sm:left-4 h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-accent flex flex-col items-center justify-center text-center text-white font-bold text-[10px] sm:text-xs leading-none p-1.5 shadow-lg animate-float">
+              <span>100%</span>
+              <span>Organic</span>
             </div>
           </div>
 

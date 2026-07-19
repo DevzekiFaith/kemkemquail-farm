@@ -44,6 +44,8 @@ export default function ReceiptModal({
     text += "==========================================\n";
     text += `Receipt ID : ${receiptId.current}\n`;
     text += `Date       : ${dateStr}\n`;
+    text += `CAC Reg No : 9071156\n`;
+    text += `NAFDAC Reg : A8-123266L\n`;
     text += "==========================================\n\n";
     text += "Items Ordered:\n";
 
@@ -61,6 +63,12 @@ export default function ReceiptModal({
     text += `Total Eggs Ordered : ${totalEggs} fresh quail eggs\n`;
     text += `Subtotal (USD)     : $${subtotal.toFixed(2)}\n`;
     text += `Subtotal (NGN)     : ₦${subtotalNgn.toLocaleString()}\n`;
+    text += "==========================================\n";
+    text += "Payment Instructions:\n";
+    text += "Please make transfer to our FCMB Corporate Account:\n";
+    text += "Bank Name    : FCMB\n";
+    text += "Account Name : KEMKEM QUAIL FARMS ENTERPRISE\n";
+    text += "Account No.  : 2007744689\n";
     text += "==========================================\n";
     text += "Thank you for supporting our organic farm!\n";
     text += "Inquiries: kemkemquailfarm@gmail.com\n";

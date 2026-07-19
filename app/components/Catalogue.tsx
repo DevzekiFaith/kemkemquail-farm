@@ -129,8 +129,17 @@ export default function Catalogue({ onAddToCart, activeTab, setActiveTab }: Cata
           <span className="text-sm font-semibold tracking-wider text-primary uppercase mb-2">
             The Coop Shop
           </span>
-          <h2 className="font-serif text-4xl sm:text-5xl font-extrabold text-secondary tracking-tight max-w-lg mb-6">
+          <h2 className="font-serif text-4xl sm:text-5xl font-extrabold text-secondary tracking-tight max-w-xl mb-6 flex items-center justify-center gap-3">
             Choose Your Fresh Selection
+            <span className="relative inline-block h-8 w-8 sm:h-10 sm:w-10 animate-float select-none flex-shrink-0">
+              <Image
+                src="/single-egg.png"
+                alt="Single organic quail egg"
+                fill
+                sizes="40px"
+                className="object-contain mix-blend-multiply"
+              />
+            </span>
           </h2>
           <p className="text-secondary/60 max-w-xl text-sm leading-relaxed mb-8">
             Select standard individual crates or opt for our affordable combined crate packs to save on your weekly supply. Hand-picked, inspected, and shipped in cushioned eco-packaging.

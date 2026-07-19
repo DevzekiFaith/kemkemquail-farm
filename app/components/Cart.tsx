@@ -57,7 +57,7 @@ export default function Cart({
     if (cartItems.length === 0) return;
 
     // Default farm phone number (Change as required by the client)
-    const phoneNumber = "2348000000000"; 
+    const phoneNumber = "2349021012556"; 
     
     let message = "🥚 *KEMKEM QUAIL FARM - EGG ORDER* 🥚\n";
     message += "====================================\n\n";
@@ -238,6 +238,36 @@ export default function Cart({
                   <div className="text-right">
                     <span className="block text-primary">${subtotal.toFixed(2)}</span>
                     <span className="block text-xs text-primary/80">₦{(subtotal * 1600).toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bank Transfer Details Box */}
+              <div className="bg-cream/40 border border-secondary/10 rounded-2xl p-4 space-y-2 text-xs text-secondary/80">
+                <div className="flex justify-between items-center pb-1.5 border-b border-secondary/5">
+                  <span className="font-bold text-[9px] uppercase tracking-wider text-primary">Bank Transfer Details</span>
+                  <span className="text-[9px] font-semibold text-accent bg-accent/10 px-2 py-0.5 rounded-full">FCMB Bank</span>
+                </div>
+                <div className="space-y-1.5">
+                  <div className="flex justify-between">
+                    <span className="text-secondary/60">Account Name:</span>
+                    <span className="font-bold text-right text-[11px] text-secondary">Agbo Nkemakonam Mabel</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-secondary/60">Account Number:</span>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText("2521028012");
+                        alert("Account number copied!");
+                      }}
+                      className="font-mono font-bold text-primary hover:text-primary-light flex items-center gap-1 cursor-pointer transition-colors bg-white px-2 py-0.5 rounded border border-secondary/5 hover:border-primary/10 shadow-sm"
+                      title="Click to copy account number"
+                    >
+                      2521028012
+                      <svg className="h-3.5 w-3.5 inline text-secondary/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>

@@ -164,7 +164,7 @@ export default function Benefits() {
             <div className="mt-12 pt-6 border-t border-cream/10 flex items-center justify-between">
               <span className="text-xs text-cream/50">Need custom bulk delivery?</span>
               <a
-                href="https://wa.me/2348000000000?text=Hello%20Kemkem%20Quail%20Farm!%20I'm%20interested%20in%20custom%20bulk%20orders."
+                href="https://wa.me/2349021012556?text=Hello%20Kemkem%20Quail%20Farm!%20I'm%20interested%20in%20custom%20bulk%20orders."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs font-semibold text-olive hover:text-white transition-colors"

@@ -15,7 +15,7 @@ export default function Footer() {
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (!message) return;
-    const phoneNumber = "2348000000000"; // Default farm contact number
+    const phoneNumber = "2349021012556"; // Default farm contact number
     const waText = encodeURIComponent(`Hello Kemkem Quail Farm! My email is ${email || "not provided"}.\nMessage: ${message}`);
     window.open(`https://wa.me/${phoneNumber}?text=${waText}`, "_blank");
     setMessage("");
@@ -97,14 +97,14 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span>Green Valley Agriculture Estate, Block B-12</span>
+                <span>Plot 64 Owerre Ezukala Street, Independence Layout, Enugu State.</span>
               </div>
               
               <div className="flex items-center gap-3">
                 <svg className="h-4 w-4 text-olive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span>+234 (800) 000-0000 (WhatsApp Line)</span>
+                <span>+234 902 101 2556 (WhatsApp Line)</span>
               </div>
 
               <div className="flex items-center gap-3">

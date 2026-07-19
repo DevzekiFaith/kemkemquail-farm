@@ -164,6 +164,11 @@ export default function ReceiptModal({
               <p className="text-[10px] text-secondary/50 font-medium tracking-wide uppercase mt-1">
                 Purchase Order Receipt
               </p>
+              <div className="flex justify-center gap-2 text-[9px] text-secondary/40 font-mono mt-1.5 uppercase font-bold tracking-wider">
+                <span>CAC: 9071156</span>
+                <span className="text-secondary/20">•</span>
+                <span>NAFDAC: A8-123266L</span>
+              </div>
             </div>
 
             {/* Receipt Details */}

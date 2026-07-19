@@ -104,3 +104,36 @@ body {
   }
 }
 
+/* Force standard hex/rgb computed color values inside receipt box so html2canvas doesn't crash on oklab/oklch colors */
+#print-receipt-area {
+  color: #1e3322 !important;
+  border-color: rgba(30, 51, 34, 0.15) !important;
+  background-color: #fbfbf7 !important;
+}
+
+#print-receipt-area * {
+  color: #1e3322 !important;
+  border-color: rgba(30, 51, 34, 0.15) !important;
+}
+
+#print-receipt-area .text-primary {
+  color: #386641 !important;
+}
+
+#print-receipt-area .text-accent {
+  color: #d27c2d !important;
+}
+
+#print-receipt-area .bg-primary {
+  background-color: #386641 !important;
+  color: #f4f2e9 !important;
+}
+
+#print-receipt-area .bg-cream\/10 {
+  background-color: rgba(244, 242, 233, 0.5) !important;
+}
+
+#print-receipt-area .bg-cream\/15 {
+  background-color: rgba(244, 242, 233, 0.7) !important;
+}
+

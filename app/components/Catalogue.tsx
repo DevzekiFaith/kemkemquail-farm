@@ -131,12 +131,12 @@ export default function Catalogue({ onAddToCart, activeTab, setActiveTab }: Cata
           </span>
           <h2 className="font-serif text-4xl sm:text-5xl font-extrabold text-secondary tracking-tight max-w-xl mb-6 flex items-center justify-center gap-3">
             Choose Your Fresh Selection
-            <span className="relative inline-block h-8 w-8 sm:h-10 sm:w-10 animate-float select-none flex-shrink-0">
+            <span className="relative inline-block h-12 w-12 sm:h-16 sm:w-16 animate-float select-none flex-shrink-0">
               <Image
                 src="/single-egg.png"
                 alt="Single organic quail egg"
                 fill
-                sizes="40px"
+                sizes="64px"
                 className="object-contain mix-blend-multiply"
               />
             </span>

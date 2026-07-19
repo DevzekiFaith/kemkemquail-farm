@@ -39,7 +39,7 @@ export default function Hero({ onExploreClick, onPlayVideoClick }: HeroProps) {
           {/* Left Column: Massive Typography */}
           <div className="flex flex-col justify-center lg:col-span-4 z-20">
             <span className="text-sm font-semibold tracking-widest text-primary uppercase mb-3">
-              Established 2026
+              Established 2025
             </span>
             <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-secondary leading-[1.1] mb-6">
               Nourishing <br />

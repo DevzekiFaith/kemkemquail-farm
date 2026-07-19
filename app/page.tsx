@@ -9,6 +9,7 @@ import Cart, { CartItem } from "./components/Cart";
 import Footer from "./components/Footer";
 import ComboPopup from "./components/ComboPopup";
 import ReceiptModal from "./components/ReceiptModal";
+import VideoModal from "./components/VideoModal";
 
 export default function Home() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -19,6 +20,7 @@ export default function Home() {
   const [checkoutItems, setCheckoutItems] = useState<CartItem[]>([]);
   const [receiptSubtotal, setReceiptSubtotal] = useState(0);
   const [receiptTotalEggs, setReceiptTotalEggs] = useState(0);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -122,7 +124,10 @@ export default function Home() {
       {/* Main Sections */}
       <main>
         {/* Hero Section */}
-        <Hero onExploreClick={scrollToCatalogue} />
+        <Hero 
+          onExploreClick={scrollToCatalogue} 
+          onPlayVideoClick={() => setIsVideoOpen(true)}
+        />
 
         {/* Catalogue Section (Store) */}
         <Catalogue 
@@ -162,6 +167,12 @@ export default function Home() {
         checkoutItems={checkoutItems}
         subtotal={receiptSubtotal}
         totalEggs={receiptTotalEggs}
+      />
+
+      {/* Video Player Modal */}
+      <VideoModal 
+        isOpen={isVideoOpen}
+        onClose={() => setIsVideoOpen(false)}
       />
     </div>
   );

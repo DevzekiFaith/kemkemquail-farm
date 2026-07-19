@@ -4,16 +4,21 @@ import Image from "next/image";
 
 interface HeroProps {
   onExploreClick: () => void;
+  onPlayVideoClick: () => void;
 }
 
-export default function Hero({ onExploreClick }: HeroProps) {
+export default function Hero({ onExploreClick, onPlayVideoClick }: HeroProps) {
   return (
     <section id="hero" className="relative overflow-hidden bg-background py-12 lg:py-20 flex items-center min-h-[85vh]">
       {/* Organic radial background glow from globals.css */}
       <div className="organic-bg" />
 
       {/* Quail Bird background watermarked overlay */}
-      <div className="absolute bottom-0 left-0 lg:left-[5%] h-[320px] w-[320px] sm:h-[450px] sm:w-[450px] opacity-[0.06] pointer-events-none z-0">
+      <div 
+        onClick={onPlayVideoClick}
+        title="Watch Farm Video"
+        className="absolute bottom-0 left-0 lg:left-[5%] h-[320px] w-[320px] sm:h-[450px] sm:w-[450px] opacity-[0.06] hover:opacity-[0.14] pointer-events-auto cursor-pointer transition-opacity z-0 group"
+      >
         <Image
           src="/quail.png"
           alt="Watermarked Quail bird"
@@ -21,6 +26,11 @@ export default function Hero({ onExploreClick }: HeroProps) {
           sizes="(max-width: 640px) 320px, 450px"
           className="object-contain object-left-bottom mix-blend-multiply select-none"
         />
+        {/* Subtle floating hint above quail on hover */}
+        <div className="absolute top-10 left-10 opacity-0 group-hover:opacity-100 transition-opacity bg-secondary/80 text-cream text-[9px] font-bold px-2.5 py-1 rounded-full pointer-events-none uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-ping" />
+          Watch Video
+        </div>
       </div>
 
       <div className="mx-auto max-w-7xl px-6 sm:px-8 w-full z-10">
@@ -57,15 +67,27 @@ export default function Hero({ onExploreClick }: HeroProps) {
             <div className="absolute h-[270px] w-[270px] xs:h-[320px] xs:w-[320px] sm:h-[430px] sm:w-[430px] rounded-full border border-primary-light/30 animate-spin-slow" />
             
             {/* Center image cutout */}
-            <div className="absolute h-[210px] w-[210px] xs:h-[260px] xs:w-[260px] sm:h-[350px] sm:w-[350px] rounded-full overflow-hidden border-4 sm:border-8 border-background shadow-inner z-10 transition-transform duration-500 hover:scale-105">
+            <div 
+              onClick={onPlayVideoClick}
+              title="Watch Farm Video"
+              className="absolute h-[210px] w-[210px] xs:h-[260px] xs:w-[260px] sm:h-[350px] sm:w-[350px] rounded-full overflow-hidden border-4 sm:border-8 border-background shadow-inner z-10 transition-transform duration-500 hover:scale-105 cursor-pointer group"
+            >
               <Image
                 src="/hero.png"
                 alt="Fresh Organic Quail Eggs"
                 fill
                 priority
                 sizes="(max-width: 640px) 210px, 350px"
-                className="object-cover object-center"
+                className="object-cover object-center group-hover:scale-110 group-hover:brightness-90 transition-all duration-700"
               />
+              {/* Play Button Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/35 transition-colors duration-300">
+                <div className="h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-white/95 text-primary flex items-center justify-center shadow-2xl scale-90 group-hover:scale-100 group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                  <svg className="h-5 w-5 sm:h-6 sm:w-6 fill-current ml-1" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
             </div>
             
             {/* Tiny accent gold bubble */}

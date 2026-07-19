@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 interface VideoModalProps {
   isOpen: boolean;
@@ -8,9 +8,14 @@ interface VideoModalProps {
 }
 
 export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+      }
     } else {
       document.body.style.overflow = "";
     }
@@ -18,6 +23,13 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current && videoRef.current.currentTime >= 3) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch((err) => console.log(err));
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -44,8 +56,10 @@ export default function VideoModal({ isOpen, onClose }: VideoModalProps) {
 
         {/* HTML5 Native Video Tag */}
         <video
+          ref={videoRef}
           autoPlay
           controls
+          onTimeUpdate={handleTimeUpdate}
           className="h-full w-full object-cover"
           src="https://assets.mixkit.co/videos/preview/mixkit-curious-wild-quail-bird-in-nature-42171-large.mp4"
           poster="/farm.png"

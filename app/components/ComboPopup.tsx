@@ -19,40 +19,64 @@ const POPUP_COMBO = {
 };
 
 export default function ComboPopup({ onAddComboToCart, onNavigateToCombos }: ComboPopupProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isDismissed, setIsDismissed] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    // Show popup after 3 seconds on load
-    const timer = setTimeout(() => {
-      const dismissed = localStorage.getItem("kemkem_promo_dismissed");
-      if (!dismissed) {
-        setIsVisible(true);
-      }
-    }, 3000);
-
-    return () => clearTimeout(timer);
+    // Determine whether to show the popup or keep it minimized on start
+    const dismissed = localStorage.getItem("kemkem_promo_dismissed");
+    if (dismissed === "true") {
+      setIsMinimized(true);
+      setHasMounted(true);
+    } else {
+      // Auto-expand after 3 seconds if never dismissed before
+      const timer = setTimeout(() => {
+        setIsMinimized(false);
+        setHasMounted(true);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   const handleDismiss = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsVisible(false);
-    setIsDismissed(true);
+    setIsMinimized(true);
     localStorage.setItem("kemkem_promo_dismissed", "true");
   };
 
   const handleCardClick = () => {
     onNavigateToCombos();
-    setIsVisible(false);
+    setIsMinimized(true);
   };
 
   const handleClaim = (e: React.MouseEvent) => {
     e.stopPropagation();
     onAddComboToCart(POPUP_COMBO);
-    setIsVisible(false);
+    setIsMinimized(true);
   };
 
-  if (!isVisible || isDismissed) return null;
+  if (!hasMounted) return null;
+
+  if (isMinimized) {
+    return (
+      <button
+        onClick={() => setIsMinimized(false)}
+        className="fixed bottom-6 right-6 z-40 h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-primary text-cream flex items-center justify-center font-serif text-xl sm:text-2xl font-extrabold shadow-2xl hover:bg-primary-light hover:scale-110 active:scale-95 transition-all cursor-pointer border border-white/10 group animate-float"
+        title="View Promo Offer"
+        aria-label="Open Special Offer"
+      >
+        K
+        {/* Pulsing alert ring */}
+        <span className="absolute -top-0.5 -right-0.5 h-3.5 w-3.5 rounded-full bg-accent border-2 border-white flex items-center justify-center">
+          <span className="h-1.5 w-1.5 rounded-full bg-white animate-ping" />
+        </span>
+        {/* Tooltip on hover */}
+        <span className="absolute right-full mr-3 bg-secondary text-cream text-[10px] font-bold py-1.5 px-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow pointer-events-none">
+          Special Offer! 🎁
+        </span>
+      </button>
+    );
+  }
 
   return (
     <div 

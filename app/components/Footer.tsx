@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import PaymentPoster from "./PaymentPoster";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -125,31 +126,8 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Scan & Pay Card */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 mt-6 space-y-3 max-w-sm">
-              <div className="flex items-center justify-between pb-1.5 border-b border-white/10">
-                <span className="text-[10px] font-bold text-olive uppercase tracking-wider">Scan & Pay (Transfer)</span>
-                <span className="text-[9px] font-mono font-semibold text-white/50">FCMB Bank</span>
-              </div>
-              
-              <div className="flex gap-4 items-center">
-                <div className="relative h-16 w-16 bg-white rounded overflow-hidden flex-shrink-0">
-                  <Image
-                    src="/qr-code.png"
-                    alt="Scan to Pay QR"
-                    fill
-                    sizes="64px"
-                    className="object-contain"
-                  />
-                </div>
-                <div className="flex-1 space-y-1 text-[11px]">
-                  <p className="font-bold text-white leading-tight">KEMKEM QUAIL FARMS ENTERPRISE</p>
-                  <p className="font-mono text-cream/70 flex items-center gap-1.5">
-                    Account: <strong>2007744689</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
+            {/* Scan & Pay Framed Board Poster */}
+            <PaymentPoster className="mt-8 hover:scale-[1.02] transition-transform duration-300 mx-auto lg:mx-0" />
           </div>
 
           {/* Contact Form */}

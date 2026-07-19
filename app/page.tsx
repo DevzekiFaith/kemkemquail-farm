@@ -11,6 +11,7 @@ import ComboPopup from "./components/ComboPopup";
 import ReceiptModal from "./components/ReceiptModal";
 import VideoModal from "./components/VideoModal";
 import Community from "./components/Community";
+import PaymentPoster from "./components/PaymentPoster";
 
 export default function Home() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -139,6 +140,43 @@ export default function Home() {
 
         {/* Benefits & Practices Section */}
         <Benefits />
+
+        {/* Scan & Pay Station Section */}
+        <section id="payment-station" className="py-24 bg-cream/15 relative overflow-hidden border-t border-secondary/5">
+          <div className="mx-auto max-w-7xl px-6 sm:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              <div className="lg:col-span-6 space-y-6">
+                <span className="text-xs font-semibold text-accent uppercase tracking-widest block">
+                  Scan & Pay Station
+                </span>
+                <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">
+                  Seamless Bank Transfers
+                </h2>
+                <p className="text-secondary/70 text-sm leading-relaxed">
+                  To complete your orders, scan the QR code using your mobile banking application or make a transfer directly to our corporate bank account details.
+                </p>
+                <p className="text-secondary/70 text-sm leading-relaxed">
+                  Once payment is completed, download your receipt and share it with our WhatsApp representative using the links inside the shopping cart.
+                </p>
+                
+                <div className="pt-4 flex flex-wrap gap-4">
+                  <div className="bg-white border border-secondary/5 rounded-2xl p-4 shadow-sm flex items-center gap-3">
+                    <span className="h-2 w-2 rounded-full bg-[#25D366]" />
+                    <span className="text-xs font-bold text-secondary">Instant Confirmation on WhatsApp</span>
+                  </div>
+                  <div className="bg-white border border-secondary/5 rounded-2xl p-4 shadow-sm flex items-center gap-3">
+                    <span className="h-2 w-2 rounded-full bg-accent" />
+                    <span className="text-xs font-bold text-secondary">Eco-Friendly Cushioned Delivery</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="lg:col-span-6 flex justify-center">
+                <PaymentPoster className="hover:-translate-y-1.5 transition-transform duration-500" />
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Community Sign-up Section */}
         <Community />

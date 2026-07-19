@@ -1,8 +1,23 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function Benefits() {
+  const slides = [
+    { src: "/farm.png", caption: "Sanitized Eco-Coop Setup for Coturnix Breed" },
+    { src: "/farm2.png", caption: "Healthy Feeding & Organic Hydration Methods" },
+    { src: "/farm3.png", caption: "Daily Fresh Collection and Egg Care" },
+  ];
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   return (
     <section id="benefits" className="py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
@@ -92,19 +107,72 @@ export default function Benefits() {
               </div>
             </div>
 
-            {/* Farm coop image inside Left Card */}
-            <div className="relative h-48 w-full rounded-2xl overflow-hidden bg-cream">
-              <Image
-                src="/farm.png"
-                alt="Modern Quail Coop and Farm"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
-                <span className="text-white text-xs font-semibold">
-                  Inside Our Sanitized Eco-Coop Setup
-                </span>
+            {/* Swiper/Carousel Slideshow inside Left Card */}
+            <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden bg-cream group/slide select-none mt-8">
+              {slides.map((slide, index) => (
+                <div
+                  key={slide.src}
+                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                    index === activeSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+                  }`}
+                >
+                  <Image
+                    src={slide.src}
+                    alt={slide.caption}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover object-center transition-transform duration-[10000ms] scale-105 group-hover/slide:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-4 sm:p-6">
+                    <span className="text-white text-xs sm:text-sm font-semibold tracking-wide shadow-sm">
+                      {slide.caption}
+                    </span>
+                  </div>
+                </div>
+              ))}
+
+              {/* Prev / Next arrows (Visible on Hover) */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveSlide((prev) => (prev - 1 + slides.length) % slides.length);
+                }}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 rounded-full p-2 bg-black/45 text-white hover:bg-black/70 hover:scale-105 transition-all opacity-0 group-hover/slide:opacity-100 cursor-pointer hidden sm:flex"
+                aria-label="Previous Slide"
+              >
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveSlide((prev) => (prev + 1) % slides.length);
+                }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 rounded-full p-2 bg-black/45 text-white hover:bg-black/70 hover:scale-105 transition-all opacity-0 group-hover/slide:opacity-100 cursor-pointer hidden sm:flex"
+                aria-label="Next Slide"
+              >
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Dot Indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                {slides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveSlide(i);
+                    }}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      i === activeSlide ? "w-6 bg-accent" : "w-2 bg-white/50"
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>

@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import ComboPopup from "./components/ComboPopup";
 import ReceiptModal from "./components/ReceiptModal";
 import VideoModal from "./components/VideoModal";
+import Community from "./components/Community";
 
 export default function Home() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -138,6 +139,9 @@ export default function Home() {
 
         {/* Benefits & Practices Section */}
         <Benefits />
+
+        {/* Community Sign-up Section */}
+        <Community />
       </main>
 
       {/* Cart Drawer */}

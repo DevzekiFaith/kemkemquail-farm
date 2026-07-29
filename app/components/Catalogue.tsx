@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { QRCodeSVG } from "qrcode.react";
 import { CRATES, COMBOS, CatalogueItem } from "../data/products";
 
 export type { CatalogueItem };
@@ -44,72 +45,131 @@ export default function Catalogue({ onAddToCart, activeTab, setActiveTab }: Cata
     <section id="catalogue" className="py-32 bg-cream/30">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <span className="text-sm font-semibold tracking-wider text-primary uppercase mb-2">
-            The Coop Shop
-          </span>
-          <h2 className="font-serif text-4xl sm:text-5xl font-extrabold text-secondary tracking-tight max-w-xl mb-6 flex items-center justify-center gap-3">
-            Choose Your Fresh Selection
-            <span className="relative inline-block h-12 w-12 sm:h-16 sm:w-16 animate-float select-none flex-shrink-0">
-              <Image
-                src="/single-egg.png"
-                alt="Single organic quail egg"
-                fill
-                sizes="64px"
-                className="object-contain mix-blend-multiply"
-              />
-            </span>
-          </h2>
-          <p className="text-secondary/60 max-w-xl text-sm leading-relaxed mb-8">
-            Select standard individual crates or opt for our affordable combined crate packs to save on your weekly supply. Hand-picked, inspected, and shipped in cushioned eco-packaging.
-          </p>
+        {/* Section Header with Side-by-Side Business QR Code Card */}
+        <div className="mb-16 bg-white/60 border border-secondary/5 rounded-3xl p-8 sm:p-10 shadow-sm backdrop-blur-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Left Column: Text Header, Currency & Tabs */}
+            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
+              <span className="text-sm font-semibold tracking-wider text-primary uppercase mb-2">
+                The Coop Shop
+              </span>
+              <h2 className="font-serif text-3xl sm:text-5xl font-extrabold text-secondary tracking-tight mb-4 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                <span>Choose Your Fresh Selection</span>
+                <span className="relative inline-block h-10 w-10 sm:h-14 sm:w-14 animate-float select-none flex-shrink-0">
+                  <Image
+                    src="/single-egg.png"
+                    alt="Single organic quail egg"
+                    fill
+                    sizes="56px"
+                    className="object-contain mix-blend-multiply"
+                  />
+                </span>
+              </h2>
+              <p className="text-secondary/70 max-w-xl text-sm leading-relaxed mb-6">
+                Select standard individual crates or opt for our affordable combined crate packs to save on your weekly supply. Hand-picked, inspected, and shipped in cushioned eco-packaging.
+              </p>
 
-          {/* Pricing Currency Switcher */}
-          <div className="flex items-center gap-1.5 mb-8 bg-secondary/5 rounded-full p-1 border border-secondary/5 text-[10px] font-bold text-secondary/70 shadow-inner">
-            <span className="pl-3 pr-1 text-secondary/40 uppercase tracking-widest text-[8px]">Currency:</span>
-            <button
-              onClick={() => setCurrency("both")}
-              className={`px-3 py-1.5 rounded-full cursor-pointer transition-all ${currency === "both" ? "bg-white text-secondary shadow-sm" : "hover:text-secondary/90"}`}
-            >
-              Both ($ & ₦)
-            </button>
-            <button
-              onClick={() => setCurrency("usd")}
-              className={`px-3 py-1.5 rounded-full cursor-pointer transition-all ${currency === "usd" ? "bg-white text-secondary shadow-sm" : "hover:text-secondary/90"}`}
-            >
-              $ USD
-            </button>
-            <button
-              onClick={() => setCurrency("ngn")}
-              className={`px-3 py-1.5 rounded-full cursor-pointer transition-all ${currency === "ngn" ? "bg-white text-secondary shadow-sm" : "hover:text-secondary/90"}`}
-            >
-              ₦ NGN
-            </button>
-          </div>
+              {/* Pricing Currency Switcher */}
+              <div className="flex items-center gap-1.5 mb-6 bg-secondary/5 rounded-full p-1 border border-secondary/5 text-[10px] font-bold text-secondary/70 shadow-inner">
+                <span className="pl-3 pr-1 text-secondary/40 uppercase tracking-widest text-[8px]">Currency:</span>
+                <button
+                  onClick={() => setCurrency("both")}
+                  className={`px-3 py-1.5 rounded-full cursor-pointer transition-all ${currency === "both" ? "bg-white text-secondary shadow-sm" : "hover:text-secondary/90"}`}
+                >
+                  Both ($ & ₦)
+                </button>
+                <button
+                  onClick={() => setCurrency("usd")}
+                  className={`px-3 py-1.5 rounded-full cursor-pointer transition-all ${currency === "usd" ? "bg-white text-secondary shadow-sm" : "hover:text-secondary/90"}`}
+                >
+                  $ USD
+                </button>
+                <button
+                  onClick={() => setCurrency("ngn")}
+                  className={`px-3 py-1.5 rounded-full cursor-pointer transition-all ${currency === "ngn" ? "bg-white text-secondary shadow-sm" : "hover:text-secondary/90"}`}
+                >
+                  ₦ NGN
+                </button>
+              </div>
 
-          {/* Selection Tabs */}
-          <div className="inline-flex rounded-full bg-secondary/5 p-1.5 border border-secondary/5">
-            <button
-              onClick={() => setActiveTab("crates")}
-              className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-all cursor-pointer ${
-                activeTab === "crates"
-                  ? "bg-primary text-cream shadow-md"
-                  : "text-secondary/70 hover:text-secondary"
-              }`}
-            >
-              Crates Selection
-            </button>
-            <button
-              onClick={() => setActiveTab("combos")}
-              className={`rounded-full px-8 py-2.5 text-sm font-semibold transition-all cursor-pointer ${
-                activeTab === "combos"
-                  ? "bg-primary text-cream shadow-md"
-                  : "text-secondary/70 hover:text-secondary"
-              }`}
-            >
-              Crate Combinations
-            </button>
+              {/* Selection Tabs */}
+              <div className="inline-flex rounded-full bg-secondary/5 p-1.5 border border-secondary/5">
+                <button
+                  onClick={() => setActiveTab("crates")}
+                  className={`rounded-full px-6 sm:px-8 py-2.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                    activeTab === "crates"
+                      ? "bg-primary text-cream shadow-md"
+                      : "text-secondary/70 hover:text-secondary"
+                  }`}
+                >
+                  Crates Selection
+                </button>
+                <button
+                  onClick={() => setActiveTab("combos")}
+                  className={`rounded-full px-6 sm:px-8 py-2.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                    activeTab === "combos"
+                      ? "bg-primary text-cream shadow-md"
+                      : "text-secondary/70 hover:text-secondary"
+                  }`}
+                >
+                  Crate Combinations
+                </button>
+              </div>
+            </div>
+
+            {/* Right Column: Business Scannable & Printable QR Code Card */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="bg-gradient-to-b from-white via-cream/20 to-cream/50 border-2 border-primary/20 rounded-3xl p-6 shadow-xl max-w-sm w-full flex flex-col items-center text-center relative overflow-hidden group hover:shadow-2xl transition-all duration-500">
+                {/* Decorative top ribbon badge */}
+                <div className="bg-primary/10 border border-primary/20 text-primary text-[10px] font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-ping" />
+                  Official Business QR Code
+                </div>
+
+                <h3 className="font-serif font-extrabold text-secondary text-base mb-1">
+                  Kemkem Quail Farm
+                </h3>
+                <p className="text-secondary/60 text-[11px] mb-4">
+                  Scan to Pay & Order or Download PNG to Print
+                </p>
+
+                {/* Active Scannable QR Code Container */}
+                <div className="relative h-44 w-44 bg-white border-2 border-secondary/10 rounded-2xl p-3 mb-4 shadow-md group-hover:scale-105 transition-transform duration-500 flex items-center justify-center">
+                  <QRCodeSVG
+                    value="https://wa.me/2347062664288?text=Hello%20Kemkem%20Quail%20Farm!%20I%20would%20like%20to%20order%20fresh%20quail%20eggs."
+                    size={152}
+                    bgColor="#FFFFFF"
+                    fgColor="#1C271E"
+                    level="H"
+                  />
+                </div>
+
+                {/* Bank Quick Account Info */}
+                <div className="w-full bg-white/80 border border-secondary/10 rounded-2xl p-3 mb-4 text-[11px] text-secondary/80 font-sans shadow-2xs space-y-1">
+                  <div className="font-bold text-primary text-[11px]">FCMB BANK TRANSFER</div>
+                  <div className="font-mono text-[11px]">A/C: <span className="font-bold text-secondary select-all">2007744689</span></div>
+                  <div className="text-[9px] text-secondary/50 italic">KEMKEM QUAIL FARMS ENTERPRISE</div>
+                </div>
+
+                {/* Print & Download PNG Button */}
+                <a
+                  href="/kemkem-qr-code.png"
+                  download="Kemkem_Quail_Farm_QR_Code.png"
+                  className="w-full bg-secondary hover:bg-primary text-cream hover:text-white text-xs font-bold py-3 px-6 rounded-full transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
+                >
+                  <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  Download & Print QR PNG
+                </a>
+
+                <span className="text-[9px] text-secondary/50 font-medium mt-2">
+                  📷 Point camera to scan & pay directly
+                </span>
+              </div>
+            </div>
+
           </div>
         </div>
 

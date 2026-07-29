@@ -46,39 +46,39 @@ export default function PaymentPoster({ className = "" }: PaymentPosterProps) {
       <div className="my-4 font-sans text-xs sm:text-sm px-2">
         <div className="grid grid-cols-2 gap-x-6 gap-y-3 pb-4 border-b border-dashed border-secondary/15">
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
-            <span className="font-semibold">Petite (4)</span>
-            <span className="font-bold text-primary">$2.50</span>
-          </div>
-          <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
-            <span className="font-semibold">Naira Rate</span>
-            <span className="font-bold text-primary/70">₦4,000</span>
-          </div>
-
-          <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Half-Dozen (6)</span>
-            <span className="font-bold text-primary">$3.50</span>
+            <span className="font-bold text-primary">$1.88</span>
           </div>
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Naira Rate</span>
-            <span className="font-bold text-primary/70">₦5,600</span>
+            <span className="font-bold text-primary/70">₦3,000</span>
           </div>
 
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Dozen (12)</span>
-            <span className="font-bold text-primary">$6.00</span>
+            <span className="font-bold text-primary">$3.13</span>
           </div>
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Naira Rate</span>
-            <span className="font-bold text-primary/70">₦9,600</span>
+            <span className="font-bold text-primary/70">₦5,000</span>
+          </div>
+
+          <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
+            <span className="font-semibold">Family (18)</span>
+            <span className="font-bold text-primary">$4.38</span>
+          </div>
+          <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
+            <span className="font-semibold">Naira Rate</span>
+            <span className="font-bold text-primary/70">₦7,000</span>
           </div>
 
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Master (30)</span>
-            <span className="font-bold text-primary">$14.50</span>
+            <span className="font-bold text-primary">$5.63</span>
           </div>
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Naira Rate</span>
-            <span className="font-bold text-primary/70">₦23,200</span>
+            <span className="font-bold text-primary/70">₦9,000</span>
           </div>
         </div>
 

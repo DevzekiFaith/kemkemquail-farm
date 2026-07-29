@@ -11,11 +11,12 @@ interface ComboPopupProps {
 const POPUP_COMBO = {
   id: "combo-double-dozen",
   name: "Double Dozen Combo",
-  price: 11.50,
-  description: "Get 24 gourmet quail eggs (2 x 12-Egg Crates) for just $11.50 / ₦18,400. Limited weekly offer!",
+  price: 5.3125,
+  description: "Get 24 gourmet quail eggs (2 x 12-Egg Crates) for just $5.31 / ₦8,500 (Save ₦1,500!). Limited weekly offer!",
   type: "combo",
-  details: ["2 x 12-Egg Gourmet Crates", "Saves over 11% compared to single buying"],
-  image: "/combo.png",
+  size: 24,
+  details: ["2 x 12-Egg Gourmet Crates", "Saves ₦1,500 compared to single buying"],
+  image: "/combo-double-dozen.png",
 };
 
 export default function ComboPopup({ onAddComboToCart, onNavigateToCombos }: ComboPopupProps) {

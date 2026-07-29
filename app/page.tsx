@@ -98,11 +98,7 @@ export default function Home() {
     const sub = cartItems.reduce((acc, ci) => acc + ci.item.price * ci.quantity, 0);
     setReceiptSubtotal(sub);
     const eggs = cartItems.reduce((acc, ci) => {
-      const size = ci.item.size || 0;
-      let eggsInItem = size;
-      if (ci.item.id === "combo-double-dozen") eggsInItem = 24;
-      if (ci.item.id === "combo-master-duet") eggsInItem = 60;
-      if (ci.item.id === "combo-sampler-trio") eggsInItem = 48;
+      const eggsInItem = ci.item.size || 0;
       return acc + eggsInItem * ci.quantity;
     }, 0);
     setReceiptTotalEggs(eggs);

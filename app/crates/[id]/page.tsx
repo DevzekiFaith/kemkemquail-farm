@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { ALL_PRODUCTS, CatalogueItem } from "../../data/products";
+import { TiltCard, ScrollReveal } from "../../components/Parallax";
 
 interface CartItem {
   item: CatalogueItem;
@@ -110,31 +112,33 @@ export default function ProductDetailPage() {
       <main className="flex-1 max-w-5xl mx-auto w-full py-16 px-6 sm:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Image Card */}
-          <div className="md:col-span-6 flex flex-col gap-4">
-            <div className="relative aspect-square w-full rounded-[32px] overflow-hidden bg-white border border-secondary/5 p-6 shadow-md flex items-center justify-center group">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700 p-8"
-                priority
-              />
-              {product.size && (
-                <span className="absolute top-6 right-6 bg-primary text-cream text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
-                  {product.size} Eggs Crate
-                </span>
-              )}
-            </div>
+          {/* Left Column: Image Card with 3D Tilt */}
+          <ScrollReveal direction="left" delay={0.1} className="md:col-span-6 flex flex-col gap-4">
+            <TiltCard maxTilt={8} scale={1.03}>
+              <div className="relative aspect-square w-full rounded-[32px] overflow-hidden bg-white border border-secondary/5 p-6 shadow-md flex items-center justify-center group cursor-pointer">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover group-hover:scale-108 transition-transform duration-700 p-8"
+                  priority
+                />
+                {product.size && (
+                  <span className="absolute top-6 right-6 bg-primary text-cream text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
+                    {product.size} Eggs Crate
+                  </span>
+                )}
+              </div>
+            </TiltCard>
             
             <div className="text-[10px] text-center text-secondary/40 italic">
               *All crates are hand-packed with organic shock-absorbent cushioning.
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: Narrative Info */}
-          <div className="md:col-span-6 space-y-6">
+          <ScrollReveal direction="right" delay={0.2} className="md:col-span-6 space-y-6">
             <div>
               <span className="text-[10px] font-bold tracking-widest text-accent uppercase bg-accent/10 px-3 py-1 rounded-full">
                 {product.type === "crate" ? "Store Crate Selection" : "Gourmet Combo Deal"}
@@ -156,7 +160,7 @@ export default function ProductDetailPage() {
               <button
                 onClick={() => setCurrency("both")}
                 className={`rounded-full px-3 py-1 transition-all cursor-pointer ${
-                  currency === "both" ? "bg-white text-secondary shadow-sm" : ""
+                  currency === "both" ? "bg-white text-secondary shadow-sm font-bold" : ""
                 }`}
               >
                 USD & NGN
@@ -164,7 +168,7 @@ export default function ProductDetailPage() {
               <button
                 onClick={() => setCurrency("usd")}
                 className={`rounded-full px-3 py-1 transition-all cursor-pointer ${
-                  currency === "usd" ? "bg-white text-secondary shadow-sm" : ""
+                  currency === "usd" ? "bg-white text-secondary shadow-sm font-bold" : ""
                 }`}
               >
                 USD Only
@@ -172,7 +176,7 @@ export default function ProductDetailPage() {
               <button
                 onClick={() => setCurrency("ngn")}
                 className={`rounded-full px-3 py-1 transition-all cursor-pointer ${
-                  currency === "ngn" ? "bg-white text-secondary shadow-sm" : ""
+                  currency === "ngn" ? "bg-white text-secondary shadow-sm font-bold" : ""
                 }`}
               >
                 NGN Only
@@ -216,15 +220,17 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Add to Cart Trigger */}
-              <button
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.96 }}
                 onClick={handleAddToCart}
                 className="flex-1 bg-primary text-cream text-xs font-bold py-3.5 px-8 rounded-full hover:bg-primary-light transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer"
               >
                 Add {qty} to Cart — {formatPrice(product.price * qty)}
-              </button>
+              </motion.button>
             </div>
 
-          </div>
+          </ScrollReveal>
 
         </div>
       </main>

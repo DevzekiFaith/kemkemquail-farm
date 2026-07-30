@@ -12,6 +12,7 @@ import ReceiptModal from "./components/ReceiptModal";
 import VideoModal from "./components/VideoModal";
 import Community from "./components/Community";
 import PaymentPoster from "./components/PaymentPoster";
+import { ScrollProgress, ScrollReveal, TiltCard } from "./components/Parallax";
 
 export default function Home() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -126,6 +127,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background font-sans antialiased text-secondary selection:bg-primary/20 selection:text-primary">
+      {/* Scroll Progress Bar */}
+      <ScrollProgress />
+
       {/* Header / Navbar */}
       <Navbar 
         cartItemCount={cartItemCount} 
@@ -154,7 +158,7 @@ export default function Home() {
         <section id="payment-station" className="py-24 bg-cream/15 relative overflow-hidden border-t border-secondary/5">
           <div className="mx-auto max-w-7xl px-6 sm:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-6 space-y-6">
+              <ScrollReveal direction="left" delay={0.1} className="lg:col-span-6 space-y-6">
                 <span className="text-xs font-semibold text-accent uppercase tracking-widest block">
                   Scan & Pay Station
                 </span>
@@ -170,19 +174,21 @@ export default function Home() {
                 
                 <div className="pt-4 flex flex-wrap gap-4">
                   <div className="bg-white border border-secondary/5 rounded-2xl p-4 shadow-sm flex items-center gap-3">
-                    <span className="h-2 w-2 rounded-full bg-[#25D366]" />
+                    <span className="h-2 w-2 rounded-full bg-[#25D366] animate-pulse" />
                     <span className="text-xs font-bold text-secondary">Instant Confirmation on WhatsApp</span>
                   </div>
                   <div className="bg-white border border-secondary/5 rounded-2xl p-4 shadow-sm flex items-center gap-3">
-                    <span className="h-2 w-2 rounded-full bg-accent" />
+                    <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
                     <span className="text-xs font-bold text-secondary">Eco-Friendly Cushioned Delivery</span>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
               
-              <div className="lg:col-span-6 flex justify-center">
-                <PaymentPoster className="hover:-translate-y-1.5 transition-transform duration-500" />
-              </div>
+              <ScrollReveal direction="right" delay={0.25} className="lg:col-span-6 flex justify-center">
+                <TiltCard maxTilt={5} scale={1.02} className="w-full flex justify-center">
+                  <PaymentPoster className="hover:shadow-2xl transition-all duration-500" />
+                </TiltCard>
+              </ScrollReveal>
             </div>
           </div>
         </section>

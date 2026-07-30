@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import PaymentPoster from "./PaymentPoster";
 
-export default function Footer() {
+interface FooterProps {
+  onOpenAdmin?: () => void;
+}
+
+export default function Footer({ onOpenAdmin }: FooterProps) {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isMounted, setIsMounted] = useState(false);
@@ -193,9 +197,17 @@ export default function Footer() {
         {/* Footer Bottom copyright */}
         <div className="border-t border-cream/10 mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-cream/40">
           <span>&copy; {new Date().getFullYear()} Kemkem Quail Farm. All rights reserved.</span>
-          <div className="flex gap-6 mt-4 sm:mt-0">
+          <div className="flex gap-6 mt-4 sm:mt-0 items-center">
             <span className="hover:text-cream cursor-pointer transition-colors">Privacy Policy</span>
             <span className="hover:text-cream cursor-pointer transition-colors">Terms of Purchase</span>
+            {onOpenAdmin && (
+              <button
+                onClick={onOpenAdmin}
+                className="text-olive hover:text-white font-semibold transition-colors cursor-pointer flex items-center gap-1"
+              >
+                <span>🔒</span> Admin Desk
+              </button>
+            )}
           </div>
         </div>
 

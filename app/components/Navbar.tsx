@@ -5,9 +5,10 @@ import { useState } from "react";
 interface NavbarProps {
   cartItemCount: number;
   onOpenCart: () => void;
+  onOpenAdmin?: () => void;
 }
 
-export default function Navbar({ cartItemCount, onOpenCart }: NavbarProps) {
+export default function Navbar({ cartItemCount, onOpenCart, onOpenAdmin }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -61,6 +62,14 @@ export default function Navbar({ cartItemCount, onOpenCart }: NavbarProps) {
           >
             Contact
           </button>
+          {onOpenAdmin && (
+            <button 
+              onClick={onOpenAdmin}
+              className="text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full hover:bg-primary hover:text-white transition-all cursor-pointer flex items-center gap-1 shadow-2xs"
+            >
+              <span>🔒</span> Admin Desk
+            </button>
+          )}
         </nav>
 
         {/* Right Section: Cart, CTA and Burger */}
@@ -141,10 +150,21 @@ export default function Navbar({ cartItemCount, onOpenCart }: NavbarProps) {
           </button>
           <button 
             onClick={() => scrollToSection("contact")}
-            className="text-left py-2 hover:text-primary transition-colors cursor-pointer"
+            className="text-left py-2 hover:text-primary transition-colors cursor-pointer border-b border-secondary/5"
           >
             Contact
           </button>
+          {onOpenAdmin && (
+            <button 
+              onClick={() => {
+                setIsMenuOpen(false);
+                onOpenAdmin();
+              }}
+              className="text-left py-2 text-primary font-bold transition-colors cursor-pointer flex items-center gap-1.5"
+            >
+              🔒 Admin Daily Sales Desk
+            </button>
+          )}
         </div>
       )}
     </header>

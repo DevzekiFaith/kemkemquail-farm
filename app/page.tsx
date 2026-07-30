@@ -12,6 +12,7 @@ import ReceiptModal from "./components/ReceiptModal";
 import VideoModal from "./components/VideoModal";
 import Community from "./components/Community";
 import PaymentPoster from "./components/PaymentPoster";
+import AdminDashboard, { TransactionRecord } from "./components/AdminDashboard";
 import { ScrollProgress, ScrollReveal, TiltCard } from "./components/Parallax";
 
 export default function Home() {
@@ -24,6 +25,9 @@ export default function Home() {
   const [receiptSubtotal, setReceiptSubtotal] = useState(0);
   const [receiptTotalEggs, setReceiptTotalEggs] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  // Admin Desk State
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -103,6 +107,44 @@ export default function Home() {
       return acc + eggsInItem * ci.quantity;
     }, 0);
     setReceiptTotalEggs(eggs);
+
+    // Record checkout to Real-Time Admin Transaction Ledger
+    if (typeof window !== "undefined") {
+      try {
+        const num = Math.floor(1000 + Math.random() * 9000);
+        const newRecord: TransactionRecord = {
+          id: `tx-${Date.now()}`,
+          receiptId: `KK-2026-${num}`,
+          timestamp: new Date().toLocaleString(),
+          items: cartItems.map((ci) => ({
+            name: ci.item.name,
+            quantity: ci.quantity,
+            priceUsd: ci.item.price,
+            eggs: (ci.item.size || 0) * ci.quantity,
+          })),
+          totalEggs: eggs,
+          subtotalUsd: sub,
+          subtotalNgn: sub * 1600,
+          paymentMethod: "FCMB Bank Transfer",
+          status: "Pending Verification",
+          customerName: "Online Store Customer",
+          customerPhone: "WhatsApp Order",
+        };
+
+        const existingRaw = localStorage.getItem("kemkem_admin_transactions");
+        let existingList: TransactionRecord[] = [];
+        if (existingRaw) {
+          existingList = JSON.parse(existingRaw);
+        }
+        localStorage.setItem(
+          "kemkem_admin_transactions",
+          JSON.stringify([newRecord, ...existingList])
+        );
+      } catch (e) {
+        console.error("Failed to log admin transaction", e);
+      }
+    }
+
     setIsCartOpen(false);
     setIsReceiptOpen(true);
   };
@@ -134,6 +176,7 @@ export default function Home() {
       <Navbar 
         cartItemCount={cartItemCount} 
         onOpenCart={() => setIsCartOpen(true)} 
+        onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
       {/* Main Sections */}
@@ -209,7 +252,7 @@ export default function Home() {
       />
 
       {/* Footer & FAQ Section */}
-      <Footer />
+      <Footer onOpenAdmin={() => setIsAdminOpen(true)} />
 
       {/* Floating Promo Combo Popup */}
       <ComboPopup 
@@ -230,6 +273,12 @@ export default function Home() {
       <VideoModal 
         isOpen={isVideoOpen}
         onClose={() => setIsVideoOpen(false)}
+      />
+
+      {/* Real-Time Admin Sales Desk Modal */}
+      <AdminDashboard 
+        isOpen={isAdminOpen} 
+        onClose={() => setIsAdminOpen(false)} 
       />
     </div>
   );

@@ -297,13 +297,13 @@ export default function AdminDashboard({ isOpen, onClose }: AdminDashboardProps)
                   type="password"
                   value={pinInput}
                   onChange={(e) => setPinInput(e.target.value)}
-                  placeholder="Enter Passcode (e.g. 9071)"
+                  placeholder="Enter Password"
                   autoFocus
                   className="w-full text-center tracking-widest text-lg font-bold border border-secondary/20 rounded-2xl p-3 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-cream/10"
                 />
                 {pinError && (
                   <p className="text-red-500 text-xs font-bold mt-2">
-                    Invalid passcode! (Hint: use 9071 or admin)
+                    Invalid password! Please try again.
                   </p>
                 )}
               </div>

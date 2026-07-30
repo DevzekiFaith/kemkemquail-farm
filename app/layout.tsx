@@ -4,6 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Kemkem Quail Farm | Premium Fresh Quail Eggs",
   description: "Order fresh, organic, hand-inspected quail eggs in custom crate sizes (4, 6, 12, and 30 eggs) or discount combos directly from our farm coops. Freshness guaranteed.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

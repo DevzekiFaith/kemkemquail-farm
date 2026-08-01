@@ -268,13 +268,36 @@ export default function Home() {
                     Learn about our CEO's hands-on commitment to sustainable quail farming, 100% plant-based organic feeding, and why quail eggs are nature's most potent superfood.
                   </p>
                   
-                  <div className="pt-2">
+                  <div className="pt-2 flex flex-wrap items-center gap-3.5">
                     <Link
                       href="/ceo"
-                      className="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-cream font-bold text-xs py-3.5 px-8 rounded-full transition-all shadow-sm hover:shadow"
+                      className="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-cream font-bold text-xs py-3.5 px-8 rounded-full transition-all shadow-sm hover:shadow cursor-pointer"
                     >
                       Read Founder's Story & Quail Benefits →
                     </Link>
+
+                    {/* Social Media Badges */}
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      <a
+                        href="https://www.instagram.com/kemkemfarm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 bg-white hover:bg-cream border border-secondary/10 px-3.5 py-2.5 rounded-full text-xs font-bold text-secondary transition-all shadow-2xs hover:scale-102 cursor-pointer"
+                        title="Follow Kemkem Farm on Instagram"
+                      >
+                        <span className="text-[#E4405F]">📸</span> IG: kemkem Farm
+                      </a>
+
+                      <a
+                        href="https://www.tiktok.com/@kemkemquaileggs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 bg-white hover:bg-cream border border-secondary/10 px-3.5 py-2.5 rounded-full text-xs font-bold text-secondary transition-all shadow-2xs hover:scale-102 cursor-pointer"
+                        title="Follow Kemkem Quail Eggs on TikTok"
+                      >
+                        <span>🎵</span> TikTok: @kemkemquaileggs
+                      </a>
+                    </div>
                   </div>
                 </ScrollReveal>
               </div>

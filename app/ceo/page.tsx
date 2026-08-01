@@ -95,6 +95,27 @@ export default function CEOPage() {
                         <span>•</span>
                         <span>NAFDAC: A8-123266L</span>
                       </div>
+
+                      {/* Social Handles */}
+                      <div className="mt-4 pt-3 border-t border-secondary/10 flex justify-center items-center gap-2.5">
+                        <a
+                          href="https://www.instagram.com/kemkemfarm"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-cream/60 hover:bg-cream border border-secondary/10 px-3 py-1 rounded-full text-[11px] font-bold text-secondary flex items-center gap-1.5 transition-all shadow-2xs"
+                        >
+                          <span className="text-[#E4405F]">📸</span> IG: kemkem Farm
+                        </a>
+
+                        <a
+                          href="https://www.tiktok.com/@kemkemquaileggs"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-cream/60 hover:bg-cream border border-secondary/10 px-3 py-1 rounded-full text-[11px] font-bold text-secondary flex items-center gap-1.5 transition-all shadow-2xs"
+                        >
+                          <span>🎵</span> @kemkemquaileggs
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </TiltCard>

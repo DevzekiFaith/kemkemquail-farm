@@ -137,6 +137,27 @@ export default function Community() {
                     Submit & Join via WhatsApp
                   </button>
                 </div>
+
+                {/* Direct Social Media Links */}
+                <div className="pt-4 border-t border-secondary/5 flex flex-wrap items-center gap-3 text-xs text-secondary/60">
+                  <span className="font-semibold text-secondary text-[11px]">Also Follow Us:</span>
+                  <a
+                    href="https://www.instagram.com/kemkemfarm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-primary hover:text-accent font-semibold transition-colors bg-cream/40 px-3 py-1 rounded-full border border-secondary/5"
+                  >
+                    <span className="text-[#E4405F]">📸</span> IG: kemkem Farm
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@kemkemquaileggs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-primary hover:text-accent font-semibold transition-colors bg-cream/40 px-3 py-1 rounded-full border border-secondary/5"
+                  >
+                    <span>🎵</span> TikTok: @kemkemquaileggs
+                  </a>
+                </div>
               </form>
             )}
           </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 interface NavbarProps {
   cartItemCount: number;
@@ -12,12 +13,25 @@ interface NavbarProps {
 
 export default function Navbar({ cartItemCount, onOpenCart, onOpenAdmin }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
-  const scrollToSection = (id: string) => {
+  const handleNavClick = (e: React.MouseEvent, id: string) => {
     setIsMenuOpen(false);
+    if (pathname !== "/") {
+      // If on a subpage like /ceo or /crates/12, navigate to home page with section anchor
+      router.push(`/#${id}`);
+      return;
+    }
+
+    // On home page: smooth scroll to element
+    e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      const topOffset = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: topOffset, behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
     }
   };
 
@@ -44,36 +58,40 @@ export default function Navbar({ cartItemCount, onOpenCart, onOpenAdmin }: Navba
 
         {/* Navigation Links - Desktop */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-secondary/80">
-          <button 
-            onClick={() => scrollToSection("catalogue")}
+          <Link 
+            href="/#catalogue"
+            onClick={(e) => handleNavClick(e, "catalogue")}
             className="hover:text-primary transition-colors cursor-pointer"
           >
             Catalogue
-          </button>
-          <button 
-            onClick={() => scrollToSection("benefits")}
+          </Link>
+          <Link 
+            href="/#benefits"
+            onClick={(e) => handleNavClick(e, "benefits")}
             className="hover:text-primary transition-colors cursor-pointer"
           >
             Egg Benefits
-          </button>
-          <button 
-            onClick={() => scrollToSection("farm")}
+          </Link>
+          <Link 
+            href="/#farm"
+            onClick={(e) => handleNavClick(e, "farm")}
             className="hover:text-primary transition-colors cursor-pointer"
           >
             Our Farm
-          </button>
+          </Link>
           <Link
             href="/ceo"
             className="hover:text-primary transition-colors cursor-pointer text-accent font-bold"
           >
             Meet Our CEO
           </Link>
-          <button 
-            onClick={() => scrollToSection("contact")}
+          <Link 
+            href="/#contact"
+            onClick={(e) => handleNavClick(e, "contact")}
             className="hover:text-primary transition-colors cursor-pointer"
           >
             Contact
-          </button>
+          </Link>
           {onOpenAdmin && (
             <button 
               onClick={onOpenAdmin}
@@ -113,12 +131,13 @@ export default function Navbar({ cartItemCount, onOpenCart, onOpenAdmin }: Navba
           </button>
 
           {/* Contact Us CTA Button */}
-          <button
-            onClick={() => scrollToSection("contact")}
+          <Link
+            href="/#contact"
+            onClick={(e) => handleNavClick(e, "contact")}
             className="hidden sm:inline-flex h-10 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-white shadow-sm hover:bg-accent/90 transition-all hover:scale-102 cursor-pointer"
           >
             Order Inquiries
-          </button>
+          </Link>
 
           {/* Mobile Menu Toggle button */}
           <button
@@ -142,36 +161,41 @@ export default function Navbar({ cartItemCount, onOpenCart, onOpenAdmin }: Navba
       {/* Mobile Links Slide-Down Menu */}
       {isMenuOpen && (
         <div className="md:hidden border-t border-secondary/5 bg-white py-4 px-6 space-y-3 shadow-inner flex flex-col text-sm font-semibold text-secondary/80 animate-fade-in">
-          <button 
-            onClick={() => scrollToSection("catalogue")}
+          <Link 
+            href="/#catalogue"
+            onClick={(e) => handleNavClick(e, "catalogue")}
             className="text-left py-2 hover:text-primary transition-colors cursor-pointer border-b border-secondary/5"
           >
             Catalogue
-          </button>
-          <button 
-            onClick={() => scrollToSection("benefits")}
+          </Link>
+          <Link 
+            href="/#benefits"
+            onClick={(e) => handleNavClick(e, "benefits")}
             className="text-left py-2 hover:text-primary transition-colors cursor-pointer border-b border-secondary/5"
           >
             Egg Benefits
-          </button>
-          <button 
-            onClick={() => scrollToSection("farm")}
+          </Link>
+          <Link 
+            href="/#farm"
+            onClick={(e) => handleNavClick(e, "farm")}
             className="text-left py-2 hover:text-primary transition-colors cursor-pointer border-b border-secondary/5"
           >
             Our Farm
-          </button>
+          </Link>
           <Link 
             href="/ceo"
+            onClick={() => setIsMenuOpen(false)}
             className="text-left py-2 text-accent font-bold hover:text-primary transition-colors cursor-pointer border-b border-secondary/5"
           >
             Meet Our CEO
           </Link>
-          <button 
-            onClick={() => scrollToSection("contact")}
+          <Link 
+            href="/#contact"
+            onClick={(e) => handleNavClick(e, "contact")}
             className="text-left py-2 hover:text-primary transition-colors cursor-pointer border-b border-secondary/5"
           >
             Contact
-          </button>
+          </Link>
           {onOpenAdmin && (
             <button 
               onClick={() => {

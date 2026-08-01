@@ -90,10 +90,16 @@ export default function ProductDetailPage() {
       {/* Header Bar */}
       <header className="bg-white border-b border-secondary/5 py-5 px-6 sm:px-8 shadow-sm">
         <div className="mx-auto max-w-7xl flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-cream font-bold text-base">
-              K
-            </span>
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="relative h-9 w-9 rounded-full overflow-hidden border border-secondary/20 shadow-xs flex-shrink-0">
+              <Image
+                src="/logo-new.jpg"
+                alt="Kemkem Quail Farm Logo"
+                fill
+                sizes="36px"
+                className="object-cover object-center"
+              />
+            </div>
             <span className="font-sans text-lg font-bold tracking-tight text-secondary">
               KEMKEM <span className="text-olive font-semibold text-sm">QUAIL FARM</span>
             </span>

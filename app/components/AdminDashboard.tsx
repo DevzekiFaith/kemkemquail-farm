@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { CartItem } from "./Cart";
 
@@ -239,8 +240,14 @@ export default function AdminDashboard({ isOpen, onClose }: AdminDashboardProps)
         {/* Header Bar */}
         <div className="flex items-center justify-between pb-6 border-b border-secondary/10">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-cream font-extrabold text-lg shadow-sm">
-              K
+            <div className="relative h-10 w-10 rounded-full overflow-hidden border border-secondary/20 shadow-sm flex-shrink-0">
+              <Image
+                src="/logo-new.jpg"
+                alt="Kemkem Quail Farm Logo"
+                fill
+                sizes="40px"
+                className="object-cover object-center"
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">

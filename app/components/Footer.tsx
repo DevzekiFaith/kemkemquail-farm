@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import PaymentPoster from "./PaymentPoster";
 
 interface FooterProps {
@@ -83,14 +84,20 @@ export default function Footer({ onOpenAdmin }: FooterProps) {
           
           {/* Farm Details */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="flex items-center gap-2">
-              <span className="h-9 w-9 rounded-full bg-primary flex items-center justify-center text-cream font-bold text-lg">
-                K
-              </span>
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative h-11 w-11 rounded-full overflow-hidden border border-white/20 shadow-sm group-hover:scale-105 transition-transform duration-300">
+                <Image
+                  src="/logo-new.jpg"
+                  alt="Kemkem Quail Farm Logo"
+                  fill
+                  sizes="44px"
+                  className="object-cover object-center"
+                />
+              </div>
               <span className="font-sans text-xl font-bold tracking-tight text-white">
                 KEMKEM <span className="text-olive font-semibold text-base">QUAIL FARM</span>
               </span>
-            </div>
+            </Link>
             
             <p className="text-xs text-cream/70 leading-relaxed max-w-sm">
               We raise healthy, pasture-fed quails to produce delicious, nutrient-dense eggs. Hand-sorted and delivered fresh daily directly from our clean coops.
@@ -198,6 +205,9 @@ export default function Footer({ onOpenAdmin }: FooterProps) {
         <div className="border-t border-cream/10 mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-cream/40">
           <span>&copy; {new Date().getFullYear()} Kemkem Quail Farm. All rights reserved.</span>
           <div className="flex gap-6 mt-4 sm:mt-0 items-center">
+            <Link href="/ceo" className="text-olive hover:text-white font-bold transition-colors cursor-pointer">
+              Meet Our CEO
+            </Link>
             <span className="hover:text-cream cursor-pointer transition-colors">Privacy Policy</span>
             <span className="hover:text-cream cursor-pointer transition-colors">Terms of Purchase</span>
             {onOpenAdmin && (

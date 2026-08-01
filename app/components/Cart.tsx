@@ -99,10 +99,16 @@ export default function Cart({
           
           {/* Header */}
           <div className="flex items-center justify-between border-b border-secondary/5 px-4 sm:px-6 py-5 bg-cream/20">
-            <div className="flex items-center gap-2">
-              <span className="h-6 w-6 rounded-full bg-primary flex items-center justify-center text-cream font-bold text-xs">
-                K
-              </span>
+            <div className="flex items-center gap-2.5">
+              <div className="relative h-7 w-7 rounded-full overflow-hidden border border-secondary/20 shadow-xs flex-shrink-0">
+                <Image
+                  src="/logo-new.jpg"
+                  alt="Kemkem Quail Farm Logo"
+                  fill
+                  sizes="28px"
+                  className="object-cover object-center"
+                />
+              </div>
               <h2 className="font-serif text-lg font-bold text-secondary">
                 Shopping Cart
               </h2>

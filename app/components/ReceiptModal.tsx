@@ -121,10 +121,16 @@ export default function ReceiptModal({
             className="p-6 border border-dashed border-secondary/15 rounded-2xl bg-cream/10"
           >
             {/* Receipt Header */}
-            <div className="text-center pb-6 border-b border-dashed border-secondary/10 mb-6">
-              <span className="inline-flex h-10 w-10 rounded-full bg-primary items-center justify-center text-cream font-bold text-lg mb-2">
-                K
-              </span>
+            <div className="text-center pb-6 border-b border-dashed border-secondary/10 mb-6 flex flex-col items-center">
+              <div className="relative h-14 w-14 rounded-full overflow-hidden border border-secondary/20 shadow-sm mb-2">
+                <Image
+                  src="/logo-new.jpg"
+                  alt="Kemkem Quail Farm Logo"
+                  fill
+                  sizes="56px"
+                  className="object-cover object-center"
+                />
+              </div>
               <h3 className="font-serif text-xl font-bold text-secondary">
                 Kemkem Quail Farm
               </h3>

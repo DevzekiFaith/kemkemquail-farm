@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Catalogue, { CatalogueItem } from "./components/Catalogue";
@@ -232,6 +234,50 @@ export default function Home() {
                   <PaymentPoster className="hover:shadow-2xl transition-all duration-500" />
                 </TiltCard>
               </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
+        {/* CEO / Founder Spotlight Banner */}
+        <section className="py-20 bg-background border-t border-secondary/5 relative overflow-hidden">
+          <div className="mx-auto max-w-7xl px-6 sm:px-8">
+            <div className="bg-gradient-to-br from-cream/40 via-white to-cream/20 border border-secondary/10 rounded-[36px] p-8 sm:p-12 shadow-md relative overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <ScrollReveal direction="left" delay={0.1} className="lg:col-span-4 flex justify-center">
+                  <TiltCard maxTilt={6} scale={1.03} className="w-full max-w-xs">
+                    <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden border-2 border-primary/20 shadow-lg">
+                      <Image
+                        src="/ceo.jpg"
+                        alt="CEO Kemkem Quail Farm holding quail"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                  </TiltCard>
+                </ScrollReveal>
+
+                <ScrollReveal direction="right" delay={0.2} className="lg:col-span-8 space-y-5">
+                  <span className="text-xs font-bold text-accent uppercase tracking-widest block">
+                    Meet Our Founder & CEO
+                  </span>
+                  <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">
+                    "We don't just farm quails — we nurture pure organic wellness."
+                  </h2>
+                  <p className="text-secondary/70 text-sm leading-relaxed">
+                    Learn about our CEO's hands-on commitment to sustainable quail farming, 100% plant-based organic feeding, and why quail eggs are nature's most potent superfood.
+                  </p>
+                  
+                  <div className="pt-2">
+                    <Link
+                      href="/ceo"
+                      className="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-cream font-bold text-xs py-3.5 px-8 rounded-full transition-all shadow-sm hover:shadow"
+                    >
+                      Read Founder's Story & Quail Benefits →
+                    </Link>
+                  </div>
+                </ScrollReveal>
+              </div>
             </div>
           </div>
         </section>

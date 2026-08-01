@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface NavbarProps {
   cartItemCount: number;
@@ -20,21 +22,25 @@ export default function Navbar({ cartItemCount, onOpenCart, onOpenAdmin }: Navba
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-background/85 backdrop-blur-md shadow-[0_2px_18px_-8px_rgba(28,39,30,0.08)]">
+    <header className="sticky top-0 z-40 w-full bg-background/90 backdrop-blur-md shadow-[0_2px_18px_-8px_rgba(28,39,30,0.08)]">
       <div className="mx-auto flex max-w-7xl h-20 items-center justify-between px-6 sm:px-8">
         
-        {/* Brand Logo */}
-        <div 
-          onClick={() => scrollToSection("hero")}
-          className="flex cursor-pointer items-center gap-2"
-        >
-          <span className="h-9 w-9 rounded-full bg-primary flex items-center justify-center text-cream font-bold text-lg shadow-sm">
-            K
-          </span>
+        {/* Brand Logo with New Emblem Image */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="relative h-11 w-11 rounded-full overflow-hidden border border-primary/20 shadow-sm group-hover:scale-105 transition-transform duration-300">
+            <Image
+              src="/logo-new.jpg"
+              alt="Kemkem Quail Farm Logo"
+              fill
+              sizes="44px"
+              className="object-cover object-center"
+              priority
+            />
+          </div>
           <span className="font-sans text-xl font-bold tracking-tight text-secondary">
             KEMKEM <span className="text-primary font-semibold text-base sm:inline hidden">QUAIL FARM</span>
           </span>
-        </div>
+        </Link>
 
         {/* Navigation Links - Desktop */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-secondary/80">
@@ -56,6 +62,12 @@ export default function Navbar({ cartItemCount, onOpenCart, onOpenAdmin }: Navba
           >
             Our Farm
           </button>
+          <Link
+            href="/ceo"
+            className="hover:text-primary transition-colors cursor-pointer text-accent font-bold"
+          >
+            Meet Our CEO
+          </Link>
           <button 
             onClick={() => scrollToSection("contact")}
             className="hover:text-primary transition-colors cursor-pointer"
@@ -148,6 +160,12 @@ export default function Navbar({ cartItemCount, onOpenCart, onOpenAdmin }: Navba
           >
             Our Farm
           </button>
+          <Link 
+            href="/ceo"
+            className="text-left py-2 text-accent font-bold hover:text-primary transition-colors cursor-pointer border-b border-secondary/5"
+          >
+            Meet Our CEO
+          </Link>
           <button 
             onClick={() => scrollToSection("contact")}
             className="text-left py-2 hover:text-primary transition-colors cursor-pointer border-b border-secondary/5"

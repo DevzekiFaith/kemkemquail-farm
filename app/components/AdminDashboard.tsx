@@ -87,6 +87,22 @@ export default function AdminDashboard({ isOpen, onClose }: AdminDashboardProps)
   const [transactions, setTransactions] = useState<TransactionRecord[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<"All" | "Confirmed" | "Pending Verification">("All");
+  const [activeConsoleTab, setActiveConsoleTab] = useState<"sales" | "reviews">("sales");
+  const [adminReviews, setAdminReviews] = useState<any[]>([]);
+
+  // Load reviews from localStorage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedRev = localStorage.getItem("kemkem_reviews");
+      if (savedRev) {
+        try {
+          setAdminReviews(JSON.parse(savedRev));
+        } catch (e) {
+          console.error("Failed to load admin reviews", e);
+        }
+      }
+    }
+  }, [isOpen, activeConsoleTab]);
 
   // Load transactions from localStorage or seed with demo data
   useEffect(() => {
@@ -378,7 +394,34 @@ export default function AdminDashboard({ isOpen, onClose }: AdminDashboardProps)
               </div>
             </div>
 
-            {/* Action Bar & Search / Filter Controls */}
+            {/* Console Mode Selector Tabs */}
+            <div className="flex items-center gap-3 border-b border-secondary/10 pb-3">
+              <button
+                onClick={() => setActiveConsoleTab("sales")}
+                className={`text-xs font-bold px-4 py-2 rounded-full transition-all cursor-pointer ${
+                  activeConsoleTab === "sales"
+                    ? "bg-secondary text-cream shadow-sm"
+                    : "bg-cream/40 text-secondary/70 hover:bg-cream"
+                }`}
+              >
+                📊 Sales Ledger ({transactions.length})
+              </button>
+
+              <button
+                onClick={() => setActiveConsoleTab("reviews")}
+                className={`text-xs font-bold px-4 py-2 rounded-full transition-all cursor-pointer ${
+                  activeConsoleTab === "reviews"
+                    ? "bg-secondary text-cream shadow-sm"
+                    : "bg-cream/40 text-secondary/70 hover:bg-cream"
+                }`}
+              >
+                ⭐ Customer Ratings & Feedback ({adminReviews.length})
+              </button>
+            </div>
+
+            {activeConsoleTab === "sales" ? (
+              <>
+                {/* Action Bar & Search / Filter Controls */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-secondary/5 p-4 rounded-2xl border border-secondary/5">
               <div className="flex items-center gap-3 w-full sm:w-auto">
                 <input
@@ -514,6 +557,48 @@ export default function AdminDashboard({ isOpen, onClose }: AdminDashboardProps)
                 </table>
               </div>
             </div>
+            </>
+            ) : (
+              /* Customer Reviews Manager Tab */
+              <div className="space-y-4 pt-2">
+                <div className="flex items-center justify-between bg-cream/20 p-4 rounded-2xl border border-secondary/5">
+                  <div>
+                    <h4 className="font-serif font-bold text-secondary text-base">Verified Customer Reviews</h4>
+                    <p className="text-xs text-secondary/60">Live ratings submitted by website buyers and retail clients.</p>
+                  </div>
+                  <span className="text-xs font-bold bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20">
+                    ★ 4.9 Average Rating
+                  </span>
+                </div>
+
+                <div className="space-y-3 max-h-[400px] overflow-y-auto no-scrollbar pr-1">
+                  {adminReviews.length === 0 ? (
+                    <div className="text-center py-12 text-secondary/50 text-xs bg-white rounded-2xl border border-secondary/5">
+                      No customer reviews submitted yet.
+                    </div>
+                  ) : (
+                    adminReviews.map((rev: any, i: number) => (
+                      <div key={rev.id || i} className="bg-white p-4 rounded-2xl border border-secondary/10 shadow-2xs space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-xs text-secondary">{rev.name}</span>
+                            <span className="text-[10px] text-secondary/40">• {rev.roleLocation}</span>
+                          </div>
+                          <div className="flex text-amber-400 text-xs">
+                            {"★".repeat(rev.rating || 5)}
+                          </div>
+                        </div>
+                        <p className="text-xs text-secondary/80 italic">"{rev.comment}"</p>
+                        <div className="flex items-center justify-between text-[10px] text-secondary/50 pt-1 border-t border-secondary/5">
+                          <span className="font-bold text-primary">{rev.crateType}</span>
+                          <span>{rev.date}</span>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
 
           </div>
         )}

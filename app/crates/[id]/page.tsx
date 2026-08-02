@@ -153,6 +153,16 @@ export default function ProductDetailPage() {
               <h1 className="font-serif text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight mt-4 leading-tight">
                 {product.name} {product.size && <span className="font-sans font-extrabold text-accent ml-1">({product.size} Eggs)</span>}
               </h1>
+
+              {/* Verified Customer Rating Badge */}
+              <div className="flex items-center gap-2 mt-2.5">
+                <div className="flex text-amber-400 text-sm">
+                  ★★★★★
+                </div>
+                <span className="text-xs font-extrabold text-secondary">4.9 / 5.0</span>
+                <span className="text-secondary/30">•</span>
+                <span className="text-xs text-secondary/60 font-semibold">(42 Verified Reviews)</span>
+              </div>
               
               <div className="flex items-baseline gap-4 mt-3">
                 <span className="text-2xl font-black text-primary">

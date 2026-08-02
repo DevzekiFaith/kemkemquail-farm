@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Catalogue, { CatalogueItem } from "./components/Catalogue";
 import Benefits from "./components/Benefits";
+import Testimonials from "./components/Testimonials";
 import Cart, { CartItem } from "./components/Cart";
 import Footer from "./components/Footer";
 import ComboPopup from "./components/ComboPopup";
@@ -198,6 +199,9 @@ export default function Home() {
 
         {/* Benefits & Practices Section */}
         <Benefits />
+
+        {/* Live Customer Ratings & Testimonials Section */}
+        <Testimonials />
 
         {/* Scan & Pay Station Section */}
         <section id="payment-station" className="py-24 bg-cream/15 relative overflow-hidden border-t border-secondary/5">

@@ -136,6 +136,13 @@ export default function Footer({ onOpenAdmin }: FooterProps) {
                 <span>kemkemquailfarm@gmail.com</span>
               </div>
 
+              <div className="flex items-center gap-3">
+                <svg className="h-4 w-4 text-olive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+                <span className="font-bold text-white">www.kemkemquailfarm.com.ng</span>
+              </div>
+
               {/* Official Social Media Handles */}
               <div className="pt-3 flex flex-wrap items-center gap-3">
                 <a

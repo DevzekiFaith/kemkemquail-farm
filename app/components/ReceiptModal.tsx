@@ -237,8 +237,10 @@ export default function ReceiptModal({
                 </div>
               </div>
 
-              {/* Social Media Handles on Printable Receipt */}
+              {/* Social Media & Website Handles on Printable Receipt */}
               <div className="mt-3 pt-2.5 border-t border-dashed border-secondary/10 text-center text-[9px] text-secondary/70 flex flex-wrap items-center justify-center gap-2 font-medium">
+                <span>🌐 <strong className="text-secondary">www.kemkemquailfarm.com.ng</strong></span>
+                <span className="text-secondary/30">•</span>
                 <span>📸 IG: <strong className="text-secondary">kemkem Farm</strong></span>
                 <span className="text-secondary/30">•</span>
                 <span>🎵 TikTok: <strong className="text-secondary">@kemkemquaileggs</strong></span>

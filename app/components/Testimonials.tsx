@@ -88,7 +88,7 @@ export default function Testimonials() {
   const [comment, setComment] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Load persistent reviews from localStorage on mount
+  // Load persistent reviews from localStorage & detect deep-link auto-open query
   useEffect(() => {
     try {
       const stored = localStorage.getItem("kemkem_reviews");
@@ -100,6 +100,18 @@ export default function Testimonials() {
       }
     } catch (e) {
       console.error("Failed to load reviews from localStorage", e);
+    }
+
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash;
+      const search = window.location.search;
+      if (hash.includes("write") || search.includes("write=true") || search.includes("review=true")) {
+        setIsWriteModalOpen(true);
+        const el = document.getElementById("reviews");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }
     }
   }, []);
 
@@ -198,6 +210,38 @@ export default function Testimonials() {
                   </div>
                   <span className="text-[10px] text-secondary/50 font-bold">2%</span>
                 </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Dedicated Scan-to-Review QR Poster Card */}
+          <ScrollReveal direction="up" delay={0.3}>
+            <div className="bg-gradient-to-br from-cream/40 via-white to-white border border-secondary/10 rounded-2xl p-5 shadow-sm flex items-center gap-4 max-w-sm">
+              <div className="relative h-20 w-20 bg-white border border-secondary/15 rounded-xl overflow-hidden p-1 flex-shrink-0 shadow-inner">
+                <Image
+                  src="/qr-code.png"
+                  alt="Scan QR Code to Rate & Review Kemkem Quail Farm"
+                  fill
+                  sizes="80px"
+                  className="object-contain"
+                />
+              </div>
+              <div className="space-y-1">
+                <span className="text-[10px] font-bold text-accent uppercase tracking-wider block">
+                  📱 Instant Review QR
+                </span>
+                <h4 className="font-serif font-bold text-secondary text-sm leading-tight">
+                  Scan to Rate 5★
+                </h4>
+                <p className="text-[11px] text-secondary/60 leading-tight">
+                  Scan with smartphone camera to submit your rating directly!
+                </p>
+                <button
+                  onClick={() => setIsWriteModalOpen(true)}
+                  className="text-[10px] font-bold text-primary hover:text-accent underline pt-0.5 cursor-pointer block"
+                >
+                  Or click here to rate now →
+                </button>
               </div>
             </div>
           </ScrollReveal>

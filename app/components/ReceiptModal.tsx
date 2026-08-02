@@ -218,6 +218,25 @@ export default function ReceiptModal({
                 </div>
               </div>
 
+              {/* Scan to Rate 5★ QR badge on Receipt */}
+              <div className="mt-3 p-2.5 bg-amber-400/10 border border-amber-400/20 rounded-xl flex items-center justify-between gap-3 text-[9px]">
+                <div className="flex items-center gap-2">
+                  <div className="relative h-10 w-10 bg-white border border-amber-400/30 rounded overflow-hidden p-0.5 flex-shrink-0">
+                    <Image
+                      src="/qr-code.png"
+                      alt="Scan to Rate 5 Stars"
+                      fill
+                      sizes="40px"
+                      className="object-contain"
+                    />
+                  </div>
+                  <div>
+                    <span className="font-bold text-secondary block text-[10px]">⭐ Enjoyed Your Fresh Quail Eggs?</span>
+                    <span className="text-secondary/60 block">Scan this QR Code to rate 5-Stars & submit a review!</span>
+                  </div>
+                </div>
+              </div>
+
               {/* Social Media Handles on Printable Receipt */}
               <div className="mt-3 pt-2.5 border-t border-dashed border-secondary/10 text-center text-[9px] text-secondary/70 flex flex-wrap items-center justify-center gap-2 font-medium">
                 <span>📸 IG: <strong className="text-secondary">kemkem Farm</strong></span>

@@ -571,6 +571,34 @@ export default function AdminDashboard({ isOpen, onClose }: AdminDashboardProps)
                   </span>
                 </div>
 
+                {/* Packaging Review QR Sticker Generator Card */}
+                <div className="flex flex-wrap items-center justify-between gap-3 bg-gradient-to-r from-cream/30 via-white to-amber-500/10 p-4 rounded-2xl border border-amber-400/20 shadow-2xs">
+                  <div className="flex items-center gap-3">
+                    <div className="relative h-12 w-12 bg-white border border-amber-400/30 rounded-xl overflow-hidden p-0.5 shadow-inner">
+                      <Image
+                        src="/qr-code.png"
+                        alt="Review QR Code"
+                        fill
+                        sizes="48px"
+                        className="object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h5 className="font-serif font-bold text-secondary text-sm">Packaging Review QR Sticker</h5>
+                      <p className="text-[11px] text-secondary/60">Attach this QR Code to egg crates so buyers scan to rate 5★ instantly.</p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      window.print();
+                    }}
+                    className="bg-accent hover:bg-accent/90 text-white text-xs font-bold px-4 py-2 rounded-full transition-all cursor-pointer shadow-2xs flex items-center gap-1.5"
+                  >
+                    <span>🖨️</span> Print QR Stickers
+                  </button>
+                </div>
+
                 <div className="space-y-3 max-h-[400px] overflow-y-auto no-scrollbar pr-1">
                   {adminReviews.length === 0 ? (
                     <div className="text-center py-12 text-secondary/50 text-xs bg-white rounded-2xl border border-secondary/5">

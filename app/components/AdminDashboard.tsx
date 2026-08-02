@@ -576,7 +576,7 @@ export default function AdminDashboard({ isOpen, onClose }: AdminDashboardProps)
                   <div className="flex items-center gap-3">
                     <div className="relative h-12 w-12 bg-white border border-amber-400/30 rounded-xl overflow-hidden p-0.5 shadow-inner">
                       <Image
-                        src="/qr-code.png"
+                        src="/review-qr.png"
                         alt="Review QR Code"
                         fill
                         sizes="48px"

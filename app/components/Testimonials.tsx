@@ -223,7 +223,7 @@ export default function Testimonials() {
                 {/* QR Code on Top */}
                 <div className="relative h-24 w-24 bg-white border border-amber-400/30 rounded-2xl overflow-hidden p-1.5 flex-shrink-0 shadow-sm hover:scale-105 transition-transform duration-300">
                   <Image
-                    src="/qr-code.png"
+                    src="/review-qr.png"
                     alt="Scan QR Code to Rate & Review Kemkem Quail Farm"
                     fill
                     sizes="96px"

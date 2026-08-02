@@ -223,7 +223,7 @@ export default function ReceiptModal({
                 <div className="flex items-center gap-2">
                   <div className="relative h-10 w-10 bg-white border border-amber-400/30 rounded overflow-hidden p-0.5 flex-shrink-0">
                     <Image
-                      src="/qr-code.png"
+                      src="/review-qr.png"
                       alt="Scan to Rate 5 Stars"
                       fill
                       sizes="40px"

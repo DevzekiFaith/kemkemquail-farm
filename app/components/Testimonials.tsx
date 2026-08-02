@@ -172,77 +172,78 @@ export default function Testimonials() {
             </h2>
           </ScrollReveal>
 
-          {/* Rating Summary Card */}
+          {/* Unified Rating Summary & Instant Review QR Card */}
           <ScrollReveal direction="up" delay={0.2}>
-            <div className="bg-white border border-secondary/10 rounded-2xl p-6 shadow-sm flex items-center gap-6 sm:gap-8">
-              <div className="text-center border-r border-secondary/10 pr-6 sm:pr-8">
+            <div className="bg-white border border-secondary/10 rounded-3xl p-6 sm:p-7 shadow-sm flex flex-col md:flex-row items-center gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-secondary/10">
+              
+              {/* Left: Overall Score */}
+              <div className="text-center pr-0 md:pr-6 w-full md:w-auto">
                 <span className="font-serif text-4xl sm:text-5xl font-extrabold text-secondary block leading-none">
                   4.9
                 </span>
-                <div className="flex text-amber-400 text-sm mt-1 justify-center">
+                <div className="flex text-amber-400 text-sm mt-1.5 justify-center">
                   {"★".repeat(5)}
                 </div>
-                <span className="text-[10px] text-secondary/50 font-bold uppercase tracking-wider block mt-1">
+                <span className="text-[10px] text-secondary/50 font-bold uppercase tracking-wider block mt-1.5">
                   148 Verified Reviews
                 </span>
               </div>
 
-              {/* Star Distribution Breakdown */}
-              <div className="space-y-1 text-[11px] font-medium text-secondary/70">
+              {/* Middle: Star Breakdown */}
+              <div className="pt-4 md:pt-0 pl-0 md:pl-6 space-y-1.5 text-[11px] font-medium text-secondary/70 w-full md:w-auto">
                 <div className="flex items-center gap-2">
                   <span className="w-10 text-right">5 Star</span>
-                  <div className="w-24 sm:w-32 bg-cream/60 h-2 rounded-full overflow-hidden">
+                  <div className="w-24 sm:w-28 bg-cream/60 h-2 rounded-full overflow-hidden">
                     <div className="bg-amber-400 h-full w-[88%]" />
                   </div>
                   <span className="text-[10px] text-secondary/50 font-bold">88%</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-10 text-right">4 Star</span>
-                  <div className="w-24 sm:w-32 bg-cream/60 h-2 rounded-full overflow-hidden">
+                  <div className="w-24 sm:w-28 bg-cream/60 h-2 rounded-full overflow-hidden">
                     <div className="bg-amber-400 h-full w-[10%]" />
                   </div>
                   <span className="text-[10px] text-secondary/50 font-bold">10%</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-10 text-right">3 Star</span>
-                  <div className="w-24 sm:w-32 bg-cream/60 h-2 rounded-full overflow-hidden">
+                  <div className="w-24 sm:w-28 bg-cream/60 h-2 rounded-full overflow-hidden">
                     <div className="bg-amber-400 h-full w-[2%]" />
                   </div>
                   <span className="text-[10px] text-secondary/50 font-bold">2%</span>
                 </div>
               </div>
-            </div>
-          </ScrollReveal>
 
-          {/* Dedicated Scan-to-Review QR Poster Card */}
-          <ScrollReveal direction="up" delay={0.3}>
-            <div className="bg-gradient-to-br from-cream/40 via-white to-white border border-secondary/10 rounded-2xl p-5 shadow-sm flex items-center gap-4 max-w-sm">
-              <div className="relative h-20 w-20 bg-white border border-secondary/15 rounded-xl overflow-hidden p-1 flex-shrink-0 shadow-inner">
-                <Image
-                  src="/qr-code.png"
-                  alt="Scan QR Code to Rate & Review Kemkem Quail Farm"
-                  fill
-                  sizes="80px"
-                  className="object-contain"
-                />
+              {/* Right: Integrated Scan-to-Review QR Code */}
+              <div className="pt-4 md:pt-0 pl-0 md:pl-6 flex items-center gap-3.5 w-full md:w-auto">
+                <div className="relative h-16 w-16 bg-white border border-secondary/15 rounded-xl overflow-hidden p-1 flex-shrink-0 shadow-inner">
+                  <Image
+                    src="/qr-code.png"
+                    alt="Scan QR Code to Rate & Review Kemkem Quail Farm"
+                    fill
+                    sizes="64px"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="space-y-0.5">
+                  <span className="text-[9px] font-bold text-accent uppercase tracking-wider block">
+                    📱 Instant Review QR
+                  </span>
+                  <h4 className="font-serif font-bold text-secondary text-xs sm:text-sm leading-tight">
+                    Scan to Rate 5★
+                  </h4>
+                  <p className="text-[10px] text-secondary/60 leading-tight">
+                    Scan to submit your review directly!
+                  </p>
+                  <button
+                    onClick={() => setIsWriteModalOpen(true)}
+                    className="text-[10px] font-bold text-primary hover:text-accent underline pt-0.5 cursor-pointer block"
+                  >
+                    Or click here to rate now →
+                  </button>
+                </div>
               </div>
-              <div className="space-y-1">
-                <span className="text-[10px] font-bold text-accent uppercase tracking-wider block">
-                  📱 Instant Review QR
-                </span>
-                <h4 className="font-serif font-bold text-secondary text-sm leading-tight">
-                  Scan to Rate 5★
-                </h4>
-                <p className="text-[11px] text-secondary/60 leading-tight">
-                  Scan with smartphone camera to submit your rating directly!
-                </p>
-                <button
-                  onClick={() => setIsWriteModalOpen(true)}
-                  className="text-[10px] font-bold text-primary hover:text-accent underline pt-0.5 cursor-pointer block"
-                >
-                  Or click here to rate now →
-                </button>
-              </div>
+
             </div>
           </ScrollReveal>
         </div>

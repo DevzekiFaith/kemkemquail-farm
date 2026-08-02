@@ -172,80 +172,86 @@ export default function Testimonials() {
             </h2>
           </ScrollReveal>
 
-          {/* Unified Rating Summary & Instant Review QR Card */}
-          <ScrollReveal direction="up" delay={0.2}>
-            <div className="bg-white border border-secondary/10 rounded-3xl p-6 sm:p-7 shadow-sm flex flex-col md:flex-row items-center gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-secondary/10">
-              
-              {/* Left: Overall Score */}
-              <div className="text-center pr-0 md:pr-6 w-full md:w-auto">
-                <span className="font-serif text-4xl sm:text-5xl font-extrabold text-secondary block leading-none">
-                  4.9
-                </span>
-                <div className="flex text-amber-400 text-sm mt-1.5 justify-center">
-                  {"★".repeat(5)}
+          {/* Rating Summary Card & Instant QR Badge Pair */}
+          <div className="flex flex-col sm:flex-row items-stretch gap-6 w-full lg:w-auto">
+            {/* Card 1: Rating Score on top & Breakdown underneath */}
+            <ScrollReveal direction="up" delay={0.2} className="flex-1 w-full">
+              <div className="bg-white border border-secondary/10 rounded-3xl p-6 shadow-sm flex flex-col items-center justify-center text-center gap-4 h-full w-full">
+                {/* 4.9 Rating Score on Top */}
+                <div className="flex flex-col items-center">
+                  <span className="font-serif text-4xl sm:text-5xl font-extrabold text-secondary leading-none">
+                    4.9
+                  </span>
+                  <div className="flex text-amber-400 text-sm mt-1.5 justify-center">
+                    {"★".repeat(5)}
+                  </div>
+                  <span className="text-[10px] text-secondary/50 font-bold uppercase tracking-wider block mt-1.5">
+                    148 Verified Reviews
+                  </span>
                 </div>
-                <span className="text-[10px] text-secondary/50 font-bold uppercase tracking-wider block mt-1.5">
-                  148 Verified Reviews
-                </span>
-              </div>
 
-              {/* Middle: Star Breakdown */}
-              <div className="pt-4 md:pt-0 pl-0 md:pl-6 space-y-1.5 text-[11px] font-medium text-secondary/70 w-full md:w-auto">
-                <div className="flex items-center gap-2">
-                  <span className="w-10 text-right">5 Star</span>
-                  <div className="w-24 sm:w-28 bg-cream/60 h-2 rounded-full overflow-hidden">
-                    <div className="bg-amber-400 h-full w-[88%]" />
+                {/* Star Breakdown Indicators Underneath 4.9 */}
+                <div className="w-full max-w-xs space-y-1.5 text-[11px] font-medium text-secondary/70 pt-3 border-t border-secondary/10">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="w-10 text-right font-bold text-secondary/70">5 Star</span>
+                    <div className="flex-1 bg-cream/60 h-2 rounded-full overflow-hidden">
+                      <div className="bg-amber-400 h-full w-[88%]" />
+                    </div>
+                    <span className="text-[10px] text-secondary/50 font-bold w-8 text-right">88%</span>
                   </div>
-                  <span className="text-[10px] text-secondary/50 font-bold">88%</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-10 text-right">4 Star</span>
-                  <div className="w-24 sm:w-28 bg-cream/60 h-2 rounded-full overflow-hidden">
-                    <div className="bg-amber-400 h-full w-[10%]" />
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="w-10 text-right font-bold text-secondary/70">4 Star</span>
+                    <div className="flex-1 bg-cream/60 h-2 rounded-full overflow-hidden">
+                      <div className="bg-amber-400 h-full w-[10%]" />
+                    </div>
+                    <span className="text-[10px] text-secondary/50 font-bold w-8 text-right">10%</span>
                   </div>
-                  <span className="text-[10px] text-secondary/50 font-bold">10%</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-10 text-right">3 Star</span>
-                  <div className="w-24 sm:w-28 bg-cream/60 h-2 rounded-full overflow-hidden">
-                    <div className="bg-amber-400 h-full w-[2%]" />
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="w-10 text-right font-bold text-secondary/70">3 Star</span>
+                    <div className="flex-1 bg-cream/60 h-2 rounded-full overflow-hidden">
+                      <div className="bg-amber-400 h-full w-[2%]" />
+                    </div>
+                    <span className="text-[10px] text-secondary/50 font-bold w-8 text-right">2%</span>
                   </div>
-                  <span className="text-[10px] text-secondary/50 font-bold">2%</span>
                 </div>
               </div>
+            </ScrollReveal>
 
-              {/* Right: Integrated Scan-to-Review QR Code */}
-              <div className="pt-4 md:pt-0 pl-0 md:pl-6 flex items-center gap-3.5 w-full md:w-auto">
-                <div className="relative h-16 w-16 bg-white border border-secondary/15 rounded-xl overflow-hidden p-1 flex-shrink-0 shadow-inner">
+            {/* Card 2: Instant Scan-to-Review QR Badge */}
+            <ScrollReveal direction="up" delay={0.3} className="flex-1">
+              <div className="bg-gradient-to-br from-cream/40 via-white to-amber-500/5 border border-secondary/10 rounded-3xl p-6 shadow-sm flex flex-col items-center justify-center text-center gap-3 h-full">
+                {/* QR Code on Top */}
+                <div className="relative h-24 w-24 bg-white border border-amber-400/30 rounded-2xl overflow-hidden p-1.5 flex-shrink-0 shadow-sm hover:scale-105 transition-transform duration-300">
                   <Image
                     src="/qr-code.png"
                     alt="Scan QR Code to Rate & Review Kemkem Quail Farm"
                     fill
-                    sizes="64px"
+                    sizes="96px"
                     className="object-contain"
                   />
                 </div>
-                <div className="space-y-0.5">
-                  <span className="text-[9px] font-bold text-accent uppercase tracking-wider block">
+
+                {/* Text Info Underneath */}
+                <div className="space-y-1 max-w-xs">
+                  <span className="text-[9px] font-bold text-accent uppercase tracking-widest bg-accent/10 px-3 py-0.5 rounded-full inline-block">
                     📱 Instant Review QR
                   </span>
-                  <h4 className="font-serif font-bold text-secondary text-xs sm:text-sm leading-tight">
+                  <h4 className="font-serif font-bold text-secondary text-base leading-tight">
                     Scan to Rate 5★
                   </h4>
-                  <p className="text-[10px] text-secondary/60 leading-tight">
-                    Scan to submit your review directly!
+                  <p className="text-[11px] text-secondary/60 leading-tight">
+                    Scan with camera to submit review on your phone!
                   </p>
                   <button
                     onClick={() => setIsWriteModalOpen(true)}
-                    className="text-[10px] font-bold text-primary hover:text-accent underline pt-0.5 cursor-pointer block"
+                    className="text-[11px] font-bold text-primary hover:text-accent underline pt-1 cursor-pointer inline-block"
                   >
                     Or click here to rate now →
                   </button>
                 </div>
               </div>
-
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+          </div>
         </div>
 
         {/* Category Filter Pills & "Write a Review" CTA */}

@@ -1,12 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import { CRATES } from "../data/products";
 
 interface PaymentPosterProps {
   className?: string;
 }
 
 export default function PaymentPoster({ className = "" }: PaymentPosterProps) {
+  const crate6 = CRATES.find((c) => c.size === 6);
+  const crate12 = CRATES.find((c) => c.size === 12);
+  const crate18 = CRATES.find((c) => c.size === 18);
+  const crate30 = CRATES.find((c) => c.size === 30);
+
   return (
     <div className={`bg-white border-8 border-secondary rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl text-secondary flex flex-col justify-between font-serif relative overflow-hidden select-none ${className}`}>
       
@@ -47,38 +53,38 @@ export default function PaymentPoster({ className = "" }: PaymentPosterProps) {
         <div className="grid grid-cols-2 gap-x-6 gap-y-3 pb-4 border-b border-dashed border-secondary/15">
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Half-Dozen (6)</span>
-            <span className="font-bold text-primary">$1.88</span>
+            <span className="font-bold text-primary">${(crate6?.price || 3.125).toFixed(2)}</span>
           </div>
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Naira Rate</span>
-            <span className="font-bold text-primary/70">₦3,000</span>
+            <span className="font-bold text-primary/70">₦{Math.round((crate6?.price || 3.125) * 1600).toLocaleString()}</span>
           </div>
 
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Dozen (12)</span>
-            <span className="font-bold text-primary">$3.13</span>
+            <span className="font-bold text-primary">${(crate12?.price || 5.0).toFixed(2)}</span>
           </div>
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Naira Rate</span>
-            <span className="font-bold text-primary/70">₦5,000</span>
+            <span className="font-bold text-primary/70">₦{Math.round((crate12?.price || 5.0) * 1600).toLocaleString()}</span>
           </div>
 
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Family (18)</span>
-            <span className="font-bold text-primary">$4.38</span>
+            <span className="font-bold text-primary">${(crate18?.price || 6.25).toFixed(2)}</span>
           </div>
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Naira Rate</span>
-            <span className="font-bold text-primary/70">₦7,000</span>
+            <span className="font-bold text-primary/70">₦{Math.round((crate18?.price || 6.25) * 1600).toLocaleString()}</span>
           </div>
 
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Master (30)</span>
-            <span className="font-bold text-primary">$5.63</span>
+            <span className="font-bold text-primary">${(crate30?.price || 7.5).toFixed(2)}</span>
           </div>
           <div className="flex justify-between items-baseline border-b border-dotted border-secondary/20 pb-1">
             <span className="font-semibold">Naira Rate</span>
-            <span className="font-bold text-primary/70">₦9,000</span>
+            <span className="font-bold text-primary/70">₦{Math.round((crate30?.price || 7.5) * 1600).toLocaleString()}</span>
           </div>
         </div>
 

@@ -14,7 +14,7 @@ export const CRATES: CatalogueItem[] = [
   {
     id: "crate-6",
     name: "Classic Half-Dozen",
-    price: 1.875, // ₦3,000
+    price: 3.125, // ₦5,000
     description: "An elegant crate of 6 farm-fresh eggs perfect for a quick breakfast or testing new recipes.",
     type: "crate",
     size: 6,
@@ -25,7 +25,7 @@ export const CRATES: CatalogueItem[] = [
   {
     id: "crate-12",
     name: "Gourmet Dozen Crate",
-    price: 3.125, // ₦5,000
+    price: 5.0, // ₦8,000
     description: "The kitchen staple. High nutrient density perfect for daily smoothies and family breakfasts.",
     type: "crate",
     size: 12,
@@ -36,7 +36,7 @@ export const CRATES: CatalogueItem[] = [
   {
     id: "crate-18",
     name: "Family Select Crate",
-    price: 4.375, // ₦7,000
+    price: 6.25, // ₦10,000
     description: "Generous 18-egg family size crate for nutrient-packed meals throughout the week.",
     type: "crate",
     size: 18,
@@ -47,7 +47,7 @@ export const CRATES: CatalogueItem[] = [
   {
     id: "crate-30",
     name: "Coop Master Crate",
-    price: 5.625, // ₦9,000
+    price: 7.5, // ₦12,000
     description: "Chef's selection. 30 eggs essential for baking, pickling, large breakfasts, and catering.",
     type: "crate",
     size: 30,
